@@ -43,14 +43,21 @@ nav a {
   font-weight: 600;
 }
 
-/* Background hero image */
 .hero-background {
-  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
   height: 100vh;
   background-image: url("hero-image.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  z-index: -1; /* Make sure it's behind the top bar */
   user-select: none;
   pointer-events: none;
+}
+
+body {
+  min-height: 100vh;
 }
