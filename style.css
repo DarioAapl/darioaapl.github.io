@@ -42,7 +42,7 @@ nav a {
 }
 
 .hero-image {
-  background-image: url("your-image.jpg"); /* Replace with your actual image filename */
+  background-image: url("hero-image.jpg"); /* Replace with your actual image filename */
   background-size: cover;
   background-position: center;
   height: 100vh;
