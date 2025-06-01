@@ -1,54 +1,58 @@
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to bottom right, #121212, #1f1f1f);
-  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #f5f5f5;
+  scroll-behavior: smooth;
 }
 
-.navbar {
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #ddd;
+  z-index: 1000;
+}
+
+nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  position: fixed;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.1); /* semi-transparent */
-  backdrop-filter: blur(10px);
-  z-index: 1000;
-  top: 0;
 }
 
-.logo {
+nav .logo {
   font-weight: bold;
   font-size: 1.2rem;
-  letter-spacing: 1px;
 }
 
-.nav-links {
+nav ul {
   list-style: none;
   display: flex;
-  gap: 1.5rem;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
 }
 
-.nav-links a {
-  color: white;
+nav ul li a {
   text-decoration: none;
+  color: #000;
   font-weight: 500;
+  transition: color 0.3s;
 }
 
-.nav-links a:hover {
-  text-decoration: underline;
+nav ul li a:hover {
+  color: #0071e3;
 }
 
 main {
-  padding: 6rem 2rem 2rem;
+  padding-top: 100px;
+  max-width: 800px;
+  margin: auto;
+  padding: 100px 20px 40px;
 }
 
 section {
-  margin-bottom: 4rem;
-}
-
-section h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 100px;
 }
