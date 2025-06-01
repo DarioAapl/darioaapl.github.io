@@ -1,1 +1,2 @@
-console.log("Welcome to my site!");
+// You can add interactivity here later
+console.log("Site loaded successfully!");

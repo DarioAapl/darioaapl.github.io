@@ -1,8 +1,54 @@
 body {
-  font-family: sans-serif;
-  text-align: center;
-  margin-top: 10%;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom right, #121212, #1f1f1f);
+  color: white;
 }
-h1 {
-  color: #0066cc;
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: fixed;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1); /* semi-transparent */
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  top: 0;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+main {
+  padding: 6rem 2rem 2rem;
+}
+
+section {
+  margin-bottom: 4rem;
+}
+
+section h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
 }
