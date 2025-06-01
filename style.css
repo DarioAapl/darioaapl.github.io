@@ -12,15 +12,17 @@ html, body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 64px;
+  height: auto;
+  padding: 16px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 40px;
+  flex-wrap: wrap;
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(8px);
   z-index: 999;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  overflow-x: auto;
 }
 
 /* Logo */
@@ -31,22 +33,24 @@ html, body {
   display: flex;
   align-items: center;
   height: 100%;
+  white-space: nowrap;
 }
 
 /* Menu links */
 nav ul {
   list-style: none;
   display: flex;
+  flex-wrap: wrap;
   gap: 24px;
   margin: 0;
   padding: 0;
-  height: 100%;
   align-items: center;
 }
 
 nav li {
   display: flex;
   align-items: center;
+  white-space: nowrap;
 }
 
 nav a {
@@ -58,7 +62,7 @@ nav a {
   height: 100%;
 }
 
-/* Hero background image */
+/* Background hero image */
 .hero-background {
   width: 100%;
   height: 100vh;
@@ -69,20 +73,16 @@ nav a {
   user-select: none;
   pointer-events: none;
 }
+
+/* Responsive fix for smaller screens */
 @media (max-width: 480px) {
   .navbar {
-    padding: 10px 20px;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   nav ul {
-    gap: 16px;
-  }
-
-  .logo {
-    font-size: 1rem;
-  }
-
-  nav a {
-    font-size: 0.9rem;
+    width: 100%;
+    justify-content: space-between;
   }
 }
