@@ -1,69 +1,74 @@
-/* Reset some default styles */
+/* Reset + base */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
 body {
-  background-color: #f9f9f9;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #f7f7f7;
   color: #111;
-  line-height: 1.6;
 }
 
-/* Top navigation bar */
+/* Top nav bar */
 .navbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  padding: 20px 30px;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(10px);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 1000;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 16px 24px;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  border-bottom: 1px solid #e0e0e0;
 }
 
-/* Logo on the left */
 .logo {
-  font-size: 18px;
-  font-weight: 700;
-  color: #000;
-  letter-spacing: 0.5px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
 }
 
-/* Nav links */
-nav ul {
+.navbar ul {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 24px;
 }
 
-nav ul li a {
+.navbar a {
   text-decoration: none;
-  color: #000;
+  color: #111;
   font-weight: 500;
-  font-size: 15px;
-  transition: color 0.2s ease;
+  transition: color 0.2s;
 }
 
-nav ul li a:hover {
-  color: #555;
+.navbar a:hover {
+  color: #007aff;
 }
 
 /* Hero image section */
 .hero-image {
-  margin-top: 80px; /* Leave space for navbar */
-  width: 100%;
-  overflow: hidden;
+  padding-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #fefefe;
 }
 
-.hero-image img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
+.floating-logo {
+  width: 90%;
+  max-width: 600px;
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Animation */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0px); }
 }
