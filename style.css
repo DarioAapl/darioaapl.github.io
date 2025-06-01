@@ -51,14 +51,14 @@ nav a {
   display: block;
 }
 
-/* Hero image background */
 .hero-background {
   width: 100%;
   height: 100vh;
   background-image: url("hero-image.png");
   background-size: cover;
-  background-position: center;
+  background-position: 30% center; /* shift image slightly left */
   background-repeat: no-repeat;
   user-select: none;
   pointer-events: none;
 }
+
