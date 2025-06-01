@@ -1,49 +1,69 @@
+/* Reset some default styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
-body, html {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  height: 100%;
-  background: #f8f8f8;
+body {
+  background-color: #f9f9f9;
+  color: #111;
+  line-height: 1.6;
 }
 
+/* Top navigation bar */
 .navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 20px 30px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 30px;
-  position: fixed;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
   z-index: 1000;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
+/* Logo on the left */
 .logo {
-  font-weight: bold;
   font-size: 18px;
-  letter-spacing: 1px;
+  font-weight: 700;
+  color: #000;
+  letter-spacing: 0.5px;
 }
 
+/* Nav links */
 nav ul {
-  display: flex;
   list-style: none;
+  display: flex;
   gap: 20px;
 }
 
-nav a {
+nav ul li a {
   text-decoration: none;
-  color: black;
+  color: #000;
   font-weight: 500;
+  font-size: 15px;
+  transition: color 0.2s ease;
 }
 
+nav ul li a:hover {
+  color: #555;
+}
+
+/* Hero image section */
 .hero-image {
-  background-image: url("hero-image.jpg"); /* Replace with your actual image filename */
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
+  margin-top: 80px; /* Leave space for navbar */
+  width: 100%;
+  overflow: hidden;
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
 }
