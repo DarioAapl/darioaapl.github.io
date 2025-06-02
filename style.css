@@ -71,3 +71,45 @@ nav li a {
 .layer3 {
   z-index: 3;
 }
+.hero-container {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero-image {
+  position: absolute;
+  width: 60%;
+  left: 50%;
+  transform: translateX(-50%);
+  user-select: none;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* Specific positions for each layer */
+.layer-1 {
+  top: 0;
+  z-index: 1;
+}
+.layer-2 {
+  top: 100px;
+  z-index: 2;
+}
+.layer-3 {
+  top: 200px;
+  z-index: 3;
+}
+@media (max-width: 768px) {
+  .hero-image {
+    width: 90%;
+  }
+
+  .layer-2 {
+    top: 80px;
+  }
+
+  .layer-3 {
+    top: 160px;
+  }
+}
