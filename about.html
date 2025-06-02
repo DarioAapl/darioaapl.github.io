@@ -36,16 +36,19 @@
 }
 
 .about-image {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: 0;
-  height: 90vh;
-  max-width: 40vw;
+  height: auto;
+  width: 35vw; /* smaller than before */
+  max-height: 45vh;
   object-fit: contain;
   object-position: right bottom;
   pointer-events: none;
-  z-index: 1;
+  z-index: 0;
 }
+
+
 
 @media (max-width: 768px) {
   .about-wrapper {
@@ -58,13 +61,14 @@
     position: fixed;
     bottom: 0;
     right: 0;
-    height: 40vh;
+    height: 60vh; /* increased from 40vh */
     width: auto;
     object-fit: contain;
     object-position: right bottom;
     pointer-events: none;
     z-index: 0;
   }
+  
 }
 
 

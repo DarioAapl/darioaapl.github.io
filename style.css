@@ -150,3 +150,19 @@ body {
   min-height: 100vh;
   box-sizing: border-box;
 }
+
+.about-wrapper {
+  position: fixed;
+  top: 64px; /* below navbar */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 40px;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: white;
+  z-index: 0;
+}
