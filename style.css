@@ -44,46 +44,36 @@ nav li a {
   font-size: 0.9rem;
 }
 
-/* Hero container */
 .hero-container {
   position: relative;
   height: 100vh;
   overflow: hidden;
-  margin-top: 64px; /* prevents content from being under navbar */
+  z-index: 0;
+  margin-top: 64px; /* match navbar height */
 }
 
-/* Shared image styles */
 .hero-image {
   position: absolute;
-  width: 70%;
-  max-width: 500px;
+  top: 0;
   left: 50%;
-  transform: translateX(-50%);
+  width: 80%;
+  max-width: 500px;
+  transform: translate(-50%, 0);
+  transition: transform 0.2s ease-out;
   user-select: none;
   pointer-events: none;
   will-change: transform;
-  transition: transform 0.2s ease-out;
 }
 
-/* Layer depths and stacking */
-.layer-1 {
-  top: 0;
-  z-index: 1;
-}
-.layer-2 {
-  top: 100px;
-  z-index: 2;
-}
-.layer-3 {
-  top: 200px;
-  z-index: 3;
-}
+.layer-1 { z-index: 1; }
+.layer-2 { z-index: 2; }
+.layer-3 { z-index: 3; }
 
-/* Responsive tweaks */
 @media (max-width: 768px) {
   .hero-image {
     width: 90%;
   }
+}
 
   .layer-2 {
     top: 80px;
@@ -100,4 +90,4 @@ nav li a {
   nav li a {
     font-size: 0.8rem;
   }
-}
+
