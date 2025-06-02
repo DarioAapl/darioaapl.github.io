@@ -55,12 +55,18 @@
   }
 
   .about-image {
-    position: static;
-    width: 100%;
-    height: auto;
-    margin-top: 40px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    height: 40vh;
+    width: auto;
+    object-fit: contain;
+    object-position: right bottom;
+    pointer-events: none;
+    z-index: 0;
   }
 }
+
 
 </style>
 
