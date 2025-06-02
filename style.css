@@ -1,10 +1,18 @@
-/* Reset */
-html, body {
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
   margin: 0;
-  padding: 0;
+  padding-top: 64px; /* matches .navbar height */
   overflow-x: hidden;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
+
 
 /* Navbar */
 .navbar {
@@ -76,17 +84,32 @@ nav li a {
 }
 
 @media (max-width: 768px) {
-  .layer {
-    width: 90%;
+  .hero-image {
+    width: 80%; /* scale down slightly more */
   }
 
   .layer-1 {
-    top: 5vh;
+    top: 0vh;
   }
+
   .layer-2 {
     top: 20vh;
   }
+
   .layer-3 {
-    top: 45vh;
+    top: 38vh; /* increase gap between Apple and b */
   }
+}
+
+body {
+  padding-top: 64px; /* same height as navbar */
+}
+
+.layer-1 { top: 0; }
+.layer-2 { top: 20vh; }
+.layer-3 { top: 42vh; }
+
+body {
+  padding-top: 64px; /* Same as your .navbar height */
+  box-sizing: border-box;
 }
