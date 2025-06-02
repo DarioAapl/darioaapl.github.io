@@ -90,4 +90,7 @@ nav li a {
   nav li a {
     font-size: 0.8rem;
   }
+.hero-container {
+  margin-bottom: -64px; /* pull content up to avoid white gap */
+}
 
