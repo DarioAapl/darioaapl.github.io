@@ -61,3 +61,19 @@ nav li a {
   user-select: none;
   pointer-events: none;
 }
+/* Existing styles above... */
+
+/* Responsive fixes for mobile nav */
+@media (max-width: 500px) {
+  .navbar {
+    padding: 0 20px;
+  }
+
+  nav ul {
+    gap: 16px;
+  }
+
+  nav li a {
+    font-size: 0.9rem;
+  }
+}
