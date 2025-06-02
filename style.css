@@ -1,3 +1,4 @@
+/* Reset */
 html, body {
   margin: 0;
   padding: 0;
@@ -41,48 +42,51 @@ nav li a {
   font-weight: 600;
 }
 
-/* Hero Container */
+/* Hero Layout */
 .hero-container {
   position: relative;
-  height: 100vh;
-  overflow: hidden;
-  margin-top: 64px; /* offset for fixed navbar */
+  height: 120vh;
+  overflow: visible;
 }
 
-.hero-image {
+.layer {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  width: 70%;
-  max-width: 480px;
-  user-select: none;
+  width: 80%;
+  max-width: 500px;
   pointer-events: none;
+  user-select: none;
   will-change: transform;
+  transition: transform 0.1s ease-out;
 }
 
-/* Individual layer positions */
+/* Individual Logo Positions */
 .layer-1 {
-  top: 10%;
+  top: 5vh;
   z-index: 1;
 }
-
 .layer-2 {
-  top: 28%;
+  top: 22vh;
   z-index: 2;
 }
-
 .layer-3 {
-  top: 46%;
+  top: 47vh;
   z-index: 3;
 }
 
-/* Mobile tweaks */
 @media (max-width: 768px) {
-  .hero-image {
-    width: 85%;
+  .layer {
+    width: 90%;
   }
 
-  .layer-1 { top: 8%; }
-  .layer-2 { top: 26%; }
-  .layer-3 { top: 44%; }
+  .layer-1 {
+    top: 5vh;
+  }
+  .layer-2 {
+    top: 20vh;
+  }
+  .layer-3 {
+    top: 45vh;
+  }
 }
