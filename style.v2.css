@@ -150,7 +150,17 @@ nav li a {
     position: relative;
   }
 
+  .about-image-wrapper {
+    position: fixed;         /* ✅ Keep it fixed */
+    bottom: 0;
+    right: 0;
+    width: 55vw;             /* ✅ Make it smaller */
+    z-index: 0;
+  }
+
   .about-image {
-    height: 50vh;
+    width: 100%;
+    height: auto;
+    max-height: 60vh;         /* ⬆️ taller max if room allows */
   }
 }
