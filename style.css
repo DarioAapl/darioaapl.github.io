@@ -71,12 +71,12 @@ nav li a {
 
 /* Individual positioning + stacking */
 .parallax.logo-1 {
-  top: -2vh; /* Link Logo - moved up */
+  top: 3vh; /* Link Logo - moved up */
   z-index: 1;
 }
 
 .parallax.logo-2 {
-  top: 20vh; /* @Apple - spaced out */
+  top: 23vh; /* @Apple - spaced out */
   z-index: 2;
 }
 
