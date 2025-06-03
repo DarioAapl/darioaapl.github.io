@@ -179,5 +179,14 @@ nav li a {
   max-width: 40vw;       /* instead of 55vw */
 }
 
+.parallax {
+  position: fixed !important;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  will-change: transform;
+  pointer-events: none;
+}
+
 
 }
