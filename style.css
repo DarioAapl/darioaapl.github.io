@@ -1,0 +1,113 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  z-index: 999;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.logo a {
+  text-decoration: none;
+  color: black;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+}
+
+nav li a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 600;
+}
+
+/* ----------- MAIN SECTION ----------- */
+
+.about-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center; /* center vertically */
+  height: calc(100vh - 64px); /* full screen minus navbar */
+  padding: 0 5vw;
+  position: relative;
+}
+
+.about-text {
+  max-width: 600px;
+  z-index: 1;
+}
+
+.about-text h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.about-text p {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: #333;
+  margin: 0;
+}
+
+/* IMAGE PINNED TO BOTTOM RIGHT */
+.about-image-wrapper {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.about-image {
+  display: block;
+  width: auto;
+  height: 70vh;
+  object-fit: contain;
+  object-position: bottom right;
+}
+
+
+/* ---------- MOBILE ADJUSTMENTS ---------- */
+@media (max-width: 768px) {
+  .about-container {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 80px 5vw 20px;
+  }
+
+  .about-text {
+    margin-top: 20px;
+  }
+
+  .about-image {
+    height: 40vh;
+  }
+}
