@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dario Tino</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="favicon.png" />
 </head>
 <body>
   <header class="navbar">
@@ -16,20 +17,31 @@
       </ul>
     </nav>
   </header>
+<main class="parallax-container">
+  <img src="link-logo.png" class="parallax logo-1" data-speed="0.2" />
+  <img src="@apple-logo.png" class="parallax logo-2" data-speed="0.4" />
+  <img src="beskou-logo.png" class="parallax logo-3" data-speed="0.6" />
+</main>
 
-  <main class="hero-container">
-    <img src="link-logo.png" alt="Link Logo" class="layer layer-1" />
-    <img src="@apple-logo.png" alt="Apple Logo" class="layer layer-2" />
-    <img src="beskou-logo.png" alt="Beskou Logo" class="layer layer-3" />
-  </main>
 
-  <script>
-    document.addEventListener('scroll', () => {
-      const scrolled = window.scrollY;
-      document.querySelector('.layer-1').style.transform = `translate(-50%, ${scrolled * 0.15}px)`;
-      document.querySelector('.layer-2').style.transform = `translate(-50%, ${scrolled * 0.3}px)`;
-      document.querySelector('.layer-3').style.transform = `translate(-50%, ${scrolled * 0.45}px)`;
-    });
-  </script>
+
+
+
+<!-- Add this to make the page scrollable -->
+<div style="height: 80vh;"></div>
+
+
+<script>
+document.addEventListener("scroll", () => {
+  const scrollY = window.scrollY;
+  document.querySelectorAll(".parallax").forEach(el => {
+    const speed = parseFloat(el.dataset.speed);
+    el.style.transform = `translate(-50%, ${scrollY * speed}px)`;
+  });
+});
+</script>
+
+
+
 </body>
 </html>
