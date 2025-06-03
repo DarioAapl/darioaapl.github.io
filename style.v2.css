@@ -163,4 +163,17 @@ nav li a {
     height: auto;
     max-height: 60vh;         /* ⬆️ taller max if room allows */
   }
+.parallax.logo-1 {
+  top: 4vh;
+}
+
+.parallax.logo-2 {
+  top: 20vh;
+}
+
+.parallax.logo-3 {
+  top: 36vh;
+}
+
+
 }

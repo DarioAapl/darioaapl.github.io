@@ -32,14 +32,25 @@
 
 
 <script>
-document.addEventListener("scroll", () => {
+let ticking = false;
+
+function updateParallax() {
   const scrollY = window.scrollY;
   document.querySelectorAll(".parallax").forEach(el => {
     const speed = parseFloat(el.dataset.speed);
-    el.style.transform = `translate(-50%, ${scrollY * speed}px)`; // ✅ fixed
+    el.style.transform = `translate(-50%, ${scrollY * speed}px)`;
   });
+  ticking = false;
+}
+
+document.addEventListener("scroll", () => {
+  if (!ticking) {
+    window.requestAnimationFrame(updateParallax);
+    ticking = true;
+  }
 });
 </script>
+
 
 
 
