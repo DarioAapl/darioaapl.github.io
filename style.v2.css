@@ -175,4 +175,9 @@ nav li a {
   top: 27vh;
 }
 
+.parallax-container .parallax {
+  max-width: 40vw;       /* instead of 55vw */
+}
+
+
 }
