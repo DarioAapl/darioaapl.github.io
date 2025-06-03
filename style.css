@@ -1,3 +1,4 @@
+/* General Reset and Font */
 html, body {
   margin: 0;
   padding: 0;
@@ -7,6 +8,7 @@ html, body {
   box-sizing: border-box;
 }
 
+/* Navbar */
 .navbar {
   position: fixed;
   top: 0;
@@ -19,7 +21,7 @@ html, body {
   padding: 0 40px;
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(8px);
-  z-index: 999;
+  z-index: 1000;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
 }
 
@@ -47,20 +49,58 @@ nav li a {
   font-weight: 600;
 }
 
-/* ----------- MAIN SECTION ----------- */
+/* Hero / Index Parallax */
+.hero-container {
+  position: relative;
+  height: 150vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
 
+.layer {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  user-select: none;
+  transition: transform 0.1s ease-out;
+  will-change: transform;
+}
+
+/* Logo Sizes */
+.layer-1 {
+  z-index: 3;
+  width: 240px;
+  top: 10vh;
+}
+
+.layer-2 {
+  z-index: 2;
+  width: 260px;
+  top: 35vh;
+}
+
+.layer-3 {
+  z-index: 1;
+  width: 300px;
+  top: 65vh;
+}
+
+/* About Page */
 .about-container {
   display: flex;
   justify-content: flex-start;
-  align-items: center; /* center vertically */
-  height: calc(100vh - 64px); /* full screen minus navbar */
+  align-items: center;
+  height: calc(100vh - 64px);
   padding: 0 5vw;
   position: relative;
+  z-index: 1;
 }
 
 .about-text {
   max-width: 600px;
-  z-index: 1;
+  z-index: 2;
+  position: relative;
 }
 
 .about-text h1 {
@@ -76,38 +116,45 @@ nav li a {
   margin: 0;
 }
 
-/* IMAGE PINNED TO BOTTOM RIGHT */
+/* Image in corner */
 .about-image-wrapper {
   position: fixed;
   bottom: 0;
   right: 0;
-  z-index: 0;
   pointer-events: none;
+  z-index: 0;
 }
 
 .about-image {
-  display: block;
+  height: 75vh;
   width: auto;
-  height: 70vh;
   object-fit: contain;
-  object-position: bottom right;
+  display: block;
 }
 
-
-/* ---------- MOBILE ADJUSTMENTS ---------- */
+/* Mobile */
 @media (max-width: 768px) {
   .about-container {
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    padding: 80px 5vw 20px;
+    padding: 120px 5vw 20px;
   }
 
   .about-text {
-    margin-top: 20px;
+    z-index: 2;
+    position: relative;
   }
 
   .about-image {
-    height: 40vh;
+    height: 50vh;
   }
+
+  .layer-1, .layer-2, .layer-3 {
+    width: 160px;
+  }
+
+  .layer-1 { top: 5vh; }
+  .layer-2 { top: 30vh; }
+  .layer-3 { top: 60vh; }
 }

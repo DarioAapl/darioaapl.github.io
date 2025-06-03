@@ -5,27 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dario Tino</title>
   <link rel="stylesheet" href="style.css" />
-<link rel="icon" type="image/png" href="favicon.png" />
 </head>
 <body>
   <header class="navbar">
-    <div class="logo">DARIO TINO</div>
+    <div class="logo"><a href="index.html">DARIO TINO</a></div>
     <nav>
       <ul>
-<li><a href="about.html">ABOUT ME</a></li>
-<li><a href="projects.html">PROJECTS</a></li>
+        <li><a href="about.html">ABOUT ME</a></li>
+        <li><a href="projects.html">PROJECTS</a></li>
       </ul>
     </nav>
   </header>
 
-  <div class="hero-container">
-    <img src="link-logo.png" class="layer layer-1" alt="Link logo" />
-    <img src="@apple-logo.png" class="layer layer-2" alt="Apple logo" />
-    <img src="beskou-logo.png" class="layer layer-3" alt="Beskou logo" />
-  </div>
+  <main class="hero-container">
+    <img src="link-logo.png" alt="Link Logo" class="layer layer-1" />
+    <img src="@apple-logo.png" alt="Apple Logo" class="layer layer-2" />
+    <img src="beskou-logo.png" alt="Beskou Logo" class="layer layer-3" />
+  </main>
 
-  <section style="height: 40vh;"></section>
-
-  <script src="script.js"></script>
+  <script>
+    document.addEventListener('scroll', () => {
+      const scrolled = window.scrollY;
+      document.querySelector('.layer-1').style.transform = `translate(-50%, ${scrolled * 0.15}px)`;
+      document.querySelector('.layer-2').style.transform = `translate(-50%, ${scrolled * 0.3}px)`;
+      document.querySelector('.layer-3').style.transform = `translate(-50%, ${scrolled * 0.45}px)`;
+    });
+  </script>
 </body>
 </html>
