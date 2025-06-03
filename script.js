@@ -1,10 +1,9 @@
-window.addEventListener("scroll", () => {
-  const scrollY = window.scrollY;
-
-  document.querySelectorAll(".layer").forEach((el, index) => {
-    const depth = (index + 1) * 0.15;
-    const maxOffset = 100;
-    const offset = Math.min(scrollY * depth, maxOffset);
-    el.style.transform = `translate(-50%, ${offset}px)`;
+document.addEventListener("mousemove", (e) => {
+  const layers = document.querySelectorAll(".layer");
+  layers.forEach((layer, index) => {
+    const speed = (index + 1) * 5;
+    const x = (window.innerWidth - e.pageX * speed) / 100;
+    const y = (window.innerHeight - e.pageY * speed) / 100;
+    layer.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px)`;
   });
 });
