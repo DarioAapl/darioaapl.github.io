@@ -1,25 +1,17 @@
-html {
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
   box-sizing: border-box;
 }
 
-*, *::before, *::after {
-  box-sizing: inherit;
-}
-
-body {
-  margin: 0;
-  padding-top: 64px; /* matches .navbar height */
-  overflow-x: hidden;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-}
-
-
-/* Navbar */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  right: 0;
   height: 64px;
   display: flex;
   justify-content: space-between;
@@ -36,6 +28,11 @@ body {
   font-size: 1.2rem;
 }
 
+.logo a {
+  text-decoration: none;
+  color: black;
+}
+
 nav ul {
   list-style: none;
   display: flex;
@@ -50,119 +47,67 @@ nav li a {
   font-weight: 600;
 }
 
-/* Hero Layout */
-.hero-container {
-  position: relative;
-  height: 120vh;
-  overflow: visible;
-}
-
-.layer {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  max-width: 500px;
-  pointer-events: none;
-  user-select: none;
-  will-change: transform;
-  transition: transform 0.1s ease-out;
-}
-
-/* Individual Logo Positions */
-.layer-1 {
-  top: 5vh;
-  z-index: 1;
-}
-.layer-2 {
-  top: 22vh;
-  z-index: 2;
-}
-.layer-3 {
-  top: 47vh;
-  z-index: 3;
-}
-
-@media (max-width: 768px) {
-  .hero-image {
-    width: 80%; /* scale down slightly more */
-  }
-
-  .layer-1 {
-    top: 0vh;
-  }
-
-  .layer-2 {
-    top: 20vh;
-  }
-
-  .layer-3 {
-    top: 38vh; /* increase gap between Apple and b */
-  }
-}
-
-body {
-  padding-top: 64px; /* same height as navbar */
-}
-
-.layer-1 { top: 0; }
-.layer-2 { top: 20vh; }
-.layer-3 { top: 42vh; }
-
-body {
-  padding-top: 64px; /* Same as your .navbar height */
-  box-sizing: border-box;
-}
-
-.logo a {
-  text-decoration: none;
-  color: black; /* or whatever color you prefer */
-  font-weight: 700;
-}
-
-.logo a:visited {
-  color: black;
-}
-
-.portrait-container {
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  width: 40%;
-  min-width: 250px;
-  max-width: 400px;
-}
-
-.portrait-container img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  object-position: left bottom;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-}
+/* ----------- MAIN SECTION ----------- */
 
 .about-container {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  padding: 100px 40px;
-  min-height: 100vh;
-  box-sizing: border-box;
+  justify-content: flex-start;
+  align-items: center; /* center vertically */
+  height: calc(100vh - 64px); /* full screen minus navbar */
+  padding: 0 5vw;
+  position: relative;
 }
 
-.about-wrapper {
+.about-text {
+  max-width: 600px;
+  z-index: 1;
+}
+
+.about-text h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.about-text p {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: #333;
+  margin: 0;
+}
+
+/* IMAGE PINNED TO BOTTOM RIGHT */
+.about-image-wrapper {
   position: fixed;
-  top: 64px; /* below navbar */
-  left: 0;
-  right: 0;
   bottom: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  padding: 40px;
-  box-sizing: border-box;
-  overflow: hidden;
-  background: white;
+  right: 0;
   z-index: 0;
+  pointer-events: none;
+}
+
+.about-image {
+  display: block;
+  width: auto;
+  height: 50vh;
+  object-fit: contain;
+  object-position: bottom right;
+}
+
+
+/* ---------- MOBILE ADJUSTMENTS ---------- */
+@media (max-width: 768px) {
+  .about-container {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 80px 5vw 20px;
+  }
+
+  .about-text {
+    margin-top: 20px;
+  }
+
+  .about-image {
+    height: 40vh;
+  }
 }
