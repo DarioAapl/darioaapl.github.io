@@ -88,7 +88,7 @@ nav li a {
 .about-image {
   display: block;
   width: auto;
-  height: 50vh;
+  height: 70vh;
   object-fit: contain;
   object-position: bottom right;
 }
