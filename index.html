@@ -28,7 +28,7 @@
 
 
 <!-- Add this to make the page scrollable -->
-<div style="height: 80vh;"></div>
+<div style="height: 60vh;"></div>
 
 
 <script>
@@ -38,7 +38,7 @@ function updateParallax() {
   const scrollY = window.scrollY;
   document.querySelectorAll(".parallax").forEach(el => {
     const speed = parseFloat(el.dataset.speed);
-    el.style.transform = `translate3d(-50%, ${scrollY * speed}px, 0)`;
+    el.style.transform = `translate(-50%, ${scrollY * speed}px)`;
   });
   ticking = false;
 }
@@ -50,6 +50,7 @@ window.addEventListener("scroll", () => {
   }
 }, { passive: true });
 </script>
+
 
 
 
