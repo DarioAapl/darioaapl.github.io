@@ -182,3 +182,97 @@ nav li a {
 
 
 }
+
+------- PROJECTS STARTS HERE 
+
+.projects-container {
+  display: flex;
+  flex-direction: column;
+  padding: 400px 5vw 100px; /* Top space from navbar */
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+
+
+.project-card {
+  background: rgba(255, 255, 255, 0.6); /* semi-transparent white */
+  border-radius: 24px;
+  backdrop-filter: blur(20px); /* 🧊 frosted glass effect */
+  -webkit-backdrop-filter: blur(20px); /* ✅ Safari support */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  padding: 48px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 40px auto;
+  border: 1px solid rgba(255, 255, 255, 0.3); /* optional frosty edge */
+}
+
+
+
+.project-card:hover {
+  transform: translateY(-4px);
+}
+
+.project-card.reverse {
+  flex-direction: row-reverse;
+}
+
+.project-logo img {
+  width: 140px;
+  height: auto;
+  object-fit: contain;
+}
+
+.project-info {
+  max-width: 600px;
+}
+
+.project-info h2 {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.project-info p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.project-btn {
+  background-color: #007aff;
+  color: white;
+  padding: 12px 24px;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 100px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.3s ease;
+}
+
+.project-btn:hover {
+  background-color: #005bb5;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .project-card,
+  .project-card.reverse {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .project-logo img {
+    width: 120px;
+    margin-bottom: 20px;
+  }
+
+  .project-info {
+    max-width: 100%;
+  }
+}
