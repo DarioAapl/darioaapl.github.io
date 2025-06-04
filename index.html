@@ -50,7 +50,11 @@ window.addEventListener("scroll", () => {
     ticking = true;
   }
 }, { passive: true });
+
+// ✅ Call once on page load to apply transform immediately
+window.addEventListener("DOMContentLoaded", updateParallax);
 </script>
+
 
 
 

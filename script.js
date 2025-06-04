@@ -2,7 +2,9 @@ document.addEventListener("scroll", () => {
   const scrollY = window.scrollY;
   document.querySelectorAll(".parallax").forEach(el => {
     const speed = parseFloat(el.dataset.speed);
-    const offset = parseFloat(el.dataset.offset || 0);
-    el.style.transform = `translate(-50%, ${offset + scrollY * speed}px)`;
+    const top = parseFloat(getComputedStyle(el).top || 0);
+    const offsetY = top + scrollY * speed;
+    el.style.transform = `translate(-50%, ${offsetY}px)`;
   });
 });
+

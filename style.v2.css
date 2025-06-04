@@ -60,7 +60,7 @@ nav li a {
 
 .parallax-container .parallax {
   position: absolute;
-  top: 0;
+  
   left: 50%;
   transform: translate(-50%, 0);
   will-change: transform;
@@ -69,21 +69,21 @@ nav li a {
   z-index: 1;
 }
 
-/* Individual positioning + stacking */
 .parallax.logo-1 {
-  top: 3vh; /* Link Logo - moved up */
+  top: -2vh;
   z-index: 1;
 }
 
 .parallax.logo-2 {
-  top: 23vh; /* @Apple - spaced out */
+  top: 17vh;
   z-index: 2;
 }
 
 .parallax.logo-3 {
-  top: 40vh; /* Beskou - further down */
+  top: 35vh;
   z-index: 3;
 }
+
 
 /* Mobile friendly */
 @media (max-width: 768px) {
@@ -165,18 +165,20 @@ nav li a {
   }
 .parallax.logo-1 {
   top: 5vh;
+  z-index: 1;
 }
 
 .parallax.logo-2 {
-  top: 15vh;
+  top: 20vh;
+  z-index: 2;
 }
 
 .parallax.logo-3 {
-  top: 27vh;
+  top: 35vh;
+  z-index: 3;
 }
 
-.parallax-container .parallax {
-  max-width: 40vw;       /* instead of 55vw */
-}
+
+
 
 }
