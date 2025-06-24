@@ -17,6 +17,7 @@
         <li><a href="projects.html">PROJECTS</a></li>
       </ul>
     </nav>
+    <button id="theme-toggle">Dark / Light</button>
   </header>
 <main class="parallax-container">
   <img src="link-logo.png" class="parallax logo-1" data-speed="0.2" />
@@ -53,14 +54,13 @@ window.addEventListener("scroll", () => {
 
 // ✅ Call once on page load to apply transform immediately
 window.addEventListener("DOMContentLoaded", updateParallax);
+
+  const toggleBtn = document.getElementById('theme-toggle');
+
+  toggleBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+  });
 </script>
-
-
-
-
-
-
-
 
 </body>
 </html>

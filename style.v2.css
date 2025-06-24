@@ -276,3 +276,15 @@ nav li a {
     max-width: 100%;
   }
 }
+
+/* Default (light) theme */
+body {
+  background-color: white;
+  color: black;
+}
+
+/* Dark theme */
+body.dark-mode {
+  background-color: #121212;
+  color: white;
+}
