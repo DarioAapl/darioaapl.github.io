@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Travels</title>
+  <link rel="stylesheet" href="style.v2.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #fff;
+      color: #000;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: white;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .navbar .logo a {
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: black;
+    }
+
+    .navbar nav ul {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar nav ul li a {
+      text-decoration: none;
+      font-weight: bold;
+      color: black;
+    }
+
+    h1 {
+      margin-top: 140px; /* Fix: pushes title below navbar */
+      text-align: center;
+      font-size: 2.5rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .card h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .placeholder {
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo"><a href="index.html">DARIO TINO</a></div>
+    <nav>
+      <ul>
+        <li><a href="about.html">ABOUT ME</a></li>
+        <li><a href="projects.html">PROJECTS</a></li>
+        <li><a href="world.html">WORLD</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <h1>🌍 Countries I’ve Visited</h1>
+
+  <div class="grid">
+
+    <!-- USA -->
+    <div class="card">
+      <h2>🇺🇸 United States</h2>
+      <div class="photos">
+        <img src="photos_usa/USA_1.jpg" alt="USA 1">
+        <img src="photos_usa/USA_2.jpg" alt="USA 2">
+        <img src="photos_usa/USA_3.jpg" alt="USA 3">
+      </div>
+    </div>
+
+    <!-- Canada -->
+    <div class="card">
+      <h2>🇨🇦 Canada</h2>
+      <div class="photos">
+        <img src="photos_canada/Canada_1.jpg" alt="Canada 1">
+        <img src="photos_canada/Canada_2.jpg" alt="Canada 2">
+        <img src="photos_canada/Canada_3.jpg" alt="Canada 3">
+      </div>
+    </div>
+
+    <!-- United Kingdom -->
+    <div class="card">
+      <h2>🇬🇧 United Kingdom</h2>
+      <div class="photos">
+        <img src="photos_uk/UK_1.jpg" alt="UK 1">
+        <img src="photos_uk/UK_2.jpg" alt="UK 2">
+        <img src="photos_uk/UK_3.jpg" alt="UK 3">
+      </div>
+    </div>
+
+    <!-- Ireland -->
+    <div class="card">
+      <h2>🇮🇪 Éire / Ireland</h2>
+      <div class="photos">
+        <img src="photos_ireland/Ireland_1.jpg" alt="Ireland 1">
+        <img src="photos_ireland/Ireland_2.jpg" alt="Ireland 2">
+        <img src="photos_ireland/Ireland_3.jpg" alt="Ireland 3">
+      </div>
+    </div>
+
+    <!-- Netherlands -->
+    <div class="card">
+      <h2>🇳🇱 Nederland</h2>
+      <div class="photos">
+        <img src="photos_netherlands/Netherlands_1.jpg" alt="Netherlands 1">
+        <img src="photos_netherlands/Netherlands_2.jpg" alt="Netherlands 2">
+        <img src="photos_netherlands/Netherlands_3.jpg" alt="Netherlands 3">
+      </div>
+    </div>
+
+    <!-- France -->
+    <div class="card">
+      <h2>🇫🇷 France</h2>
+      <div class="photos">
+        <img src="photos_france/France_1.jpg" alt="France 1">
+        <img src="photos_france/France_2.jpg" alt="France 2">
+        <img src="photos_france/France_3.jpg" alt="France 3">
+      </div>
+    </div>
+
+    <!-- Germany -->
+    <div class="card">
+      <h2>🇩🇪 Deutschland</h2>
+      <div class="photos">
+        <img src="photos_germany/Germany_1.jpg" alt="Germany 1">
+        <img src="photos_germany/Germany_2.jpg" alt="Germany 2">
+        <img src="photos_germany/Germany_3.jpg" alt="Germany 3">
+      </div>
+    </div>
+
+    <!-- Iceland -->
+    <div class="card">
+      <h2>🇮🇸 Ísland</h2>
+      <div class="photos">
+        <img src="photos_iceland/Iceland_1.jpg" alt="Iceland 1">
+        <img src="photos_iceland/Iceland_2.jpg" alt="Iceland 2">
+        <img src="photos_iceland/Iceland_3.jpg" alt="Iceland 3">
+      </div>
+    </div>
+
+    <!-- Italy -->
+    <div class="card">
+      <h2>🇮🇹 Italia</h2>
+      <div class="photos">
+        <img src="photos_italy/Italy_1.jpg" alt="Italy 1">
+        <img src="photos_italy/Italy_2.jpg" alt="Italy 2">
+        <img src="photos_italy/Italy_3.jpg" alt="Italy 3">
+      </div>
+    </div>
+
+    <!-- Austria -->
+    <div class="card">
+      <h2>🇦🇹 Österreich</h2>
+      <div class="photos">
+        <img src="photos_austria/Austria_1.jpg" alt="Austria 1">
+        <img src="photos_austria/Austria_2.jpg" alt="Austria 2">
+        <img src="photos_austria/Austria_3.jpg" alt="Austria 3">
+      </div>
+    </div>
+
+    <!-- Switzerland -->
+    <div class="card">
+      <h2>🇨🇭 Schweiz / Suisse / Svizzera / Svizra</h2>
+      <div class="photos">
+        <img src="photos_ch/Switzerland_1.jpg" alt="Switzerland 1">
+        <img src="photos_ch/Switzerland_2.jpg" alt="Switzerland 2">
+        <img src="photos_ch/Switzerland_3.jpg" alt="Switzerland 3">
+      </div>
+    </div>
+
+    <!-- Liechtenstein -->
+    <div class="card">
+      <h2>🇱🇮 Liechtenstein</h2>
+      <div class="photos">
+        <img src="photos_fl/Liechtenstein_1.jpg" alt="Liechtenstein 1">
+        <img src="photos_fl/Liechtenstein_2.jpg" alt="Liechtenstein 2">
+        <img src="photos_fl/Liechtenstein_3.jpg" alt="Liechtenstein 3">
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
