@@ -6,20 +6,196 @@
   <title>Dario Tino – Projects</title>
   <link rel="stylesheet" href="style.v2.css" />
   <link rel="icon" type="image/png" href="favicon.png" />
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      background: url('sky1.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #000;
+    }
+
+    body {
+      padding-top: 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* === NAVBAR === */
+    .glass-nav {
+      position: fixed;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow:
+        inset 0 2px 6px rgba(255, 255, 255, 0.1),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.05),
+        0 10px 20px rgba(0, 0, 0, 0.05);
+      border-radius: 100px;
+      padding: 10px 24px;
+      display: flex;
+      gap: 28px;
+      z-index: 1000;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: rgba(0, 0, 0, 0.75);
+      font-size: 1rem;
+      font-weight: 400;
+      position: relative;
+      padding: 4px 12px;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      color: rgba(0, 0, 0, 1);
+    }
+
+    .nav-link.active {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      box-shadow:
+        inset 0 1px 2px rgba(255, 255, 255, 0.12),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.05),
+        0 2px 6px rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-link.active::before {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 4px;
+      width: 24%;
+      height: 40%;
+      background: radial-gradient(ellipse at top left, rgba(255, 255, 255, 0.3), transparent 60%);
+      border-radius: 50%;
+      filter: blur(3px);
+      pointer-events: none;
+    }
+
+    /* === PROJECTS === */
+    .projects-container {
+      width: 100%;
+      max-width: 1000px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .project-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 40px;
+      padding: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow:
+        inset 0 1px 2px rgba(255, 255, 255, 0.1),
+        0 6px 16px rgba(0, 0, 0, 0.05);
+      backdrop-filter: blur(6px);
+    }
+
+    .project-card.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .project-info {
+      flex: 1 1 300px;
+    }
+
+    .project-info h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: rgba(0, 0, 0, 0.85);
+    }
+
+    .project-info p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      color: rgba(0, 0, 0, 0.7);
+    }
+
+    .project-btn {
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.12);
+      padding: 0.6rem 1.4rem;
+      border-radius: 30px;
+      color: #000;
+      font-weight: 500;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      transition: background 0.2s ease;
+    }
+
+    .project-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .project-logo {
+      flex: 1 1 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .project-logo img {
+      width: 100%;
+      max-width: 150px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      .projects-container {
+        padding: 1.5rem;
+      }
+
+      .project-card {
+        flex-direction: column !important;
+        text-align: center;
+        gap: 1.5rem;
+      }
+
+      .project-logo {
+        order: -1;
+      }
+
+      .project-info h2 {
+        font-size: 1.5rem;
+      }
+
+      .project-info p {
+        font-size: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header class="navbar">
-    <div class="logo"><a href="index.html">DARIO TINO</a></div>
-    <nav>
-      <ul>
-        <li><a href="about.html">ABOUT ME</a></li>
-        <li><a href="projects.html">PROJECTS</a></li>
-        <li><a href="world.html">WORLD</a></li>
-      </ul>
-    </nav>
-  </header>
 
+  <!-- NAVBAR -->
+  <nav class="glass-nav">
+    <a href="index.html" class="nav-link">Hey!</a>
+    <a href="world.html" class="nav-link">World</a>
+    <a href="about.html" class="nav-link">Story</a>
+    <a href="projects.html" class="nav-link active">Projects</a>
+  </nav>
+
+  <!-- PROJECTS -->
   <main class="projects-container">
 
     <!-- Sindesi Card -->
@@ -38,7 +214,7 @@
     <div class="project-card reverse">
       <div class="project-info">
         <h2>Beskou</h2>
-        <p>A new era of accessability tools - simply. powerfully.</p>
+        <p>A new era of accessability tools — simply. powerfully.</p>
         <a href="https://beskou.com" class="project-btn" target="_blank">Visit Now</a>
       </div>
       <div class="project-logo">
@@ -47,5 +223,6 @@
     </div>
 
   </main>
+
 </body>
 </html>

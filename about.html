@@ -4,30 +4,179 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Dario</title>
-<link rel="stylesheet" href="style.v2.css" />
+  <link rel="stylesheet" href="style.v2.css" />
   <link rel="icon" type="image/png" href="favicon.png" />
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      background: url('sky1.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #000;
+    }
+
+    body {
+      padding-top: 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: center;
+    }
+
+    /* === NAVBAR === */
+    .glass-nav {
+      position: fixed;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow:
+        inset 0 2px 6px rgba(255, 255, 255, 0.1),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.05),
+        0 10px 20px rgba(0, 0, 0, 0.05);
+      border-radius: 100px;
+      padding: 10px 24px;
+      display: flex;
+      gap: 28px;
+      z-index: 1000;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: rgba(0, 0, 0, 0.75);
+      font-size: 1rem;
+      font-weight: 400;
+      position: relative;
+      padding: 4px 12px;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      color: rgba(0, 0, 0, 1);
+    }
+
+    .nav-link.active {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      box-shadow:
+        inset 0 1px 2px rgba(255, 255, 255, 0.12),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.05),
+        0 2px 6px rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-link.active::before {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 4px;
+      width: 24%;
+      height: 40%;
+      background: radial-gradient(ellipse at top left, rgba(255, 255, 255, 0.3), transparent 60%);
+      border-radius: 50%;
+      filter: blur(3px);
+      pointer-events: none;
+    }
+
+    /* === ABOUT SECTION === */
+    .about-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem;
+      gap: 2rem;
+    }
+
+    .about-text {
+      flex: 1 1 300px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2rem;
+      border-radius: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow:
+        inset 0 1px 2px rgba(255, 255, 255, 0.1),
+        0 6px 16px rgba(0, 0, 0, 0.05);
+      backdrop-filter: blur(6px);
+    }
+
+    .about-text h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.85);
+    }
+
+    .about-text p {
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: rgba(0, 0, 0, 0.7);
+      line-height: 1.6;
+    }
+
+    .about-image-wrapper {
+      flex: 1 1 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .about-image {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 30px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      .about-container {
+        flex-direction: column;
+        padding: 1.5rem;
+      }
+
+      .about-text {
+        padding: 1.5rem;
+      }
+
+      .about-text h1 {
+        font-size: 2rem;
+      }
+
+      .about-text p {
+        font-size: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header class="navbar">
-    <div class="logo"><a href="index.html">DARIO TINO</a></div>
-    <nav>
-      <ul>
-        <li><a href="about.html">ABOUT ME</a></li>
-        <li><a href="projects.html">PROJECTS</a></li>
-        <li><a href="world.html">WORLD</a></li>
-      </ul>
-    </nav>
-  </header>
 
+  <!-- NAVBAR -->
+  <nav class="glass-nav">
+    <a href="index.html" class="nav-link">Hey!</a>
+    <a href="world.html" class="nav-link">World</a>
+    <a href="about.html" class="nav-link active">Story</a>
+    <a href="projects.html" class="nav-link">Projects</a>
+  </nav>
+
+  <!-- MAIN CONTENT -->
   <main class="about-container">
     <div class="about-text">
       <h1>Hi, my name is Dario.</h1>
       <p>I'm a 20-year-old entrepreneur from the Principality of Liechtenstein. Since the Summer of 2024, I've been very proudly working at Apple. There we believe in doing things with purpose, passion and dedication. And that's exactly my drive.</p>
     </div>
-    <div class="about-image-wrapper">
-      <img src="portrait.png" alt="Dario's photo" class="about-image" />
-    </div>
   </main>
+
 </body>
 </html>

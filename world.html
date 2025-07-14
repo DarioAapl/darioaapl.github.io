@@ -2,59 +2,93 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Travels</title>
-  <link rel="stylesheet" href="style.v2.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600&display=swap" rel="stylesheet" />
   <style>
     * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
 
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #fff;
+    html, body {
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      background: url('sky1.jpg') no-repeat center center fixed;
+      background-size: cover;
       color: #000;
     }
 
-    .navbar {
+    body {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: center;
-      padding: 1rem 2rem;
+      padding-top: 100px;
+    }
+
+    /* === NAVBAR === */
+    .glass-nav {
       position: fixed;
-      top: 0;
-      width: 100%;
-      background: white;
-      z-index: 1000;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-
-    .navbar .logo a {
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1.5rem;
-      color: black;
-    }
-
-    .navbar nav ul {
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow:
+        inset 0 2px 6px rgba(255, 255, 255, 0.1),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.05),
+        0 10px 20px rgba(0, 0, 0, 0.05);
+      border-radius: 100px;
+      padding: 10px 24px;
       display: flex;
-      gap: 2rem;
-      list-style: none;
-      margin: 0;
-      padding: 0;
+      gap: 28px;
+      z-index: 1000;
     }
 
-    .navbar nav ul li a {
+    .nav-link {
       text-decoration: none;
-      font-weight: bold;
-      color: black;
+      color: rgba(0, 0, 0, 0.75);
+      font-size: 1rem;
+      font-weight: 400;
+      position: relative;
+      padding: 4px 12px;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      color: rgba(0, 0, 0, 1);
+    }
+
+    .nav-link.active {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      box-shadow:
+        inset 0 1px 2px rgba(255, 255, 255, 0.12),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.05),
+        0 2px 6px rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-link.active::before {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 4px;
+      width: 24%;
+      height: 40%;
+      background: radial-gradient(ellipse at top left, rgba(255, 255, 255, 0.3), transparent 60%);
+      border-radius: 50%;
+      filter: blur(3px);
+      pointer-events: none;
     }
 
     h1 {
-      margin-top: 140px; /* Fix: pushes title below navbar */
-      text-align: center;
       font-size: 2.5rem;
+      margin-top: 40px;
+      margin-bottom: 2rem;
+      text-align: center;
+      color: rgba(0, 0, 0, 0.8);
     }
 
     .grid {
@@ -63,14 +97,19 @@
       gap: 2rem;
       padding: 2rem;
       max-width: 1200px;
-      margin: 0 auto;
+      width: 100%;
     }
 
     .card {
-      background: white;
-      border-radius: 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 24px;
       padding: 1.5rem;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      box-shadow:
+        inset 0 1px 2px rgba(255, 255, 255, 0.15),
+        0 4px 12px rgba(0, 0, 0, 0.08);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
     }
 
     .card h2 {
@@ -78,28 +117,58 @@
       margin-bottom: 1rem;
     }
 
-    .placeholder {
-      color: #666;
+    .card img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      margin-bottom: 0.5rem;
+    }
+
+    .photos {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.5rem;
+    }
+
+    @media (max-width: 600px) {
+      .glass-nav {
+        gap: 16px;
+        padding: 8px 16px;
+        font-size: 0.9rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .grid {
+        padding: 1rem;
+        gap: 1rem;
+      }
+
+      .photos {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
-  <header class="navbar">
-    <div class="logo"><a href="index.html">DARIO TINO</a></div>
-    <nav>
-      <ul>
-        <li><a href="about.html">ABOUT ME</a></li>
-        <li><a href="projects.html">PROJECTS</a></li>
-        <li><a href="world.html">WORLD</a></li>
-      </ul>
-    </nav>
-  </header>
 
+  <!-- NAVBAR -->
+  <nav class="glass-nav">
+    <a href="index.html" class="nav-link">Hey!</a>
+    <a href="world.html" class="nav-link active">World</a>
+    <a href="about.html" class="nav-link">Story</a>
+    <a href="projects.html" class="nav-link">Projects</a>
+  </nav>
+
+  <!-- TITLE -->
   <h1>🌍 Countries I’ve Visited</h1>
 
+  <!-- GRID -->
   <div class="grid">
 
-    <!-- USA -->
+    <!-- Example Cards -->
     <div class="card">
       <h2>🇺🇸 United States</h2>
       <div class="photos">
@@ -109,7 +178,6 @@
       </div>
     </div>
 
-    <!-- Canada -->
     <div class="card">
       <h2>🇨🇦 Canada</h2>
       <div class="photos">
@@ -119,7 +187,6 @@
       </div>
     </div>
 
-    <!-- United Kingdom -->
     <div class="card">
       <h2>🇬🇧 United Kingdom</h2>
       <div class="photos">
