@@ -43,7 +43,7 @@
         inset 0 -2px 4px rgba(0, 0, 0, 0.05),
         0 10px 20px rgba(0, 0, 0, 0.05);
       border-radius: 100px;
-      padding: 10px 24px;
+      padding: 10px 12px;
       display: flex;
       gap: 28px;
       z-index: 1000;
@@ -146,19 +146,24 @@
       background: rgba(255, 255, 255, 0.2);
     }
 
-    .project-logo {
-      flex: 1 1 200px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+.project-logo {
+  flex: 1 1 260px; /* give it more weight */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px; /* optional */
+}
 
-    .project-logo img {
-      width: 100%;
-      max-width: 150px;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
+
+.project-logo img {
+  width: 240px; /* ← direct fixed size */
+  max-width: none;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
 
     @media (max-width: 768px) {
       .projects-container {
