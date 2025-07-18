@@ -11,39 +11,56 @@
       padding: 0;
       box-sizing: border-box;
     }
-    
-html, body {
-  height: 100%;
-  font-family: 'Inter', sans-serif;
-  overflow-x: hidden;
-}
 
+    html, body {
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
 
     body {
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding-top: 100px;
+      background: transparent;
+      position: relative;
+      z-index: 1;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('sky1.jpg') no-repeat center center;
+      background-size: cover;
+      z-index: -1;
+      pointer-events: none;
     }
 
     /* === NAVBAR === */
-.glass-nav {
-  margin: 0 auto; /* centers it horizontally */
-  display: flex;
-  justify-content: center;
-  gap: 28px;
-  padding: 10px 12px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 100px;
-  box-shadow:
-    inset 0 2px 6px rgba(255, 255, 255, 0.1),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.05),
-    0 10px 20px rgba(0, 0, 0, 0.05);
-  backdrop-filter: blur(6px);
-  max-width: fit-content;
-}
-
+    .glass-nav {
+      position: absolute;
+      top: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      padding: 10px 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 100px;
+      box-shadow:
+        inset 0 2px 6px rgba(255, 255, 255, 0.1),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.05),
+        0 10px 20px rgba(0, 0, 0, 0.05);
+      backdrop-filter: blur(6px);
+      max-width: fit-content;
+    }
 
     .nav-link {
       text-decoration: none;
@@ -84,7 +101,7 @@ html, body {
 
     h1 {
       font-size: 2.5rem;
-      margin-top: 40px;
+      margin-top: 120px;
       margin-bottom: 2rem;
       text-align: center;
       color: rgba(0, 0, 0, 0.8);
@@ -149,26 +166,6 @@ html, body {
         grid-template-columns: 1fr;
       }
     }
-
-    body {
-  position: relative;
-  z-index: 1;
-  background: transparent;
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('sky1.jpg') no-repeat center center;
-  background-size: cover;
-  z-index: -1;
-  pointer-events: none;
-}
-
   </style>
 </head>
 <body>
