@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hey!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+html, body {
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+
+    body {
+      background: url('sky1.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    /* === NAVBAR === */
+.glass-nav {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 100px;
+  box-shadow:
+    inset 0 2px 6px rgba(255, 255, 255, 0.1),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.05),
+    0 10px 20px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(6px);
+  z-index: 10;
+}
+
+
+
+    .nav-link {
+      text-decoration: none;
+      color: rgba(0, 0, 0, 0.75);
+      font-size: 1rem;
+      font-weight: 400;
+      position: relative;
+      padding: 4px 12px;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      color: rgba(0, 0, 0, 1);
+    }
+
+    .nav-link.active {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      box-shadow:
+        inset 0 1px 2px rgba(255, 255, 255, 0.12),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.05),
+        0 2px 6px rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-link.active::before {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 4px;
+      width: 24%;
+      height: 40%;
+      background: radial-gradient(ellipse at top left, rgba(255, 255, 255, 0.3), transparent 60%);
+      border-radius: 50%;
+      filter: blur(3px);
+      pointer-events: none;
+    }
+
+    /* === BUBBLE === */
+    .water-drop {
+      position: relative;
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 100px;
+      padding: 40px 60px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow:
+        inset 0 5px 12px rgba(255, 255, 255, 0.15),
+        inset 0 -5px 10px rgba(0, 0, 0, 0.1),
+        0 20px 40px rgba(0, 0, 0, 0.08);
+      background-clip: padding-box;
+    }
+
+    .water-drop::before {
+      content: '';
+      position: absolute;
+      top: 10%;
+      left: 10%;
+      width: 60%;
+      height: 40%;
+      background: radial-gradient(ellipse at top left, rgba(255, 255, 255, 0.4), transparent 70%);
+      border-radius: 50%;
+      filter: blur(6px);
+      pointer-events: none;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.8);
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: rgba(0, 0, 0, 0.7);
+    }
+
+    @media (max-width: 600px) {
+      .glass-nav {
+        gap: 16px;
+        padding: 8px 16px;
+        font-size: 0.9rem;
+      }
+
+      .nav-link {
+        padding: 4px 8px;
+      }
+
+      .water-drop {
+        padding: 40px 20px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+    }
+
+    body {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('sky1.jpg') no-repeat center center;
+  background-size: cover;
+  z-index: -1;
+  pointer-events: none;
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="glass-nav">
+    <a href="index.html" class="nav-link active">Hey!</a>
+    <a href="world.html" class="nav-link">World</a>
+    <a href="about.html" class="nav-link">Story</a>
+    <a href="projects.html" class="nav-link">Projects</a>
+  </nav>
+
+  <!-- BUBBLE CONTENT -->
+  <div class="water-drop">
+    <h1>Welcome</h1>
+    <p>Breathe deep. Let your ideas float.</p>
+  </div>
+
+
+</body>
+</html>

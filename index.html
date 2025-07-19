@@ -3,55 +3,48 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hey!</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600&display=swap" rel="stylesheet">
+  <title>Dario Tino</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600&display=swap" rel="stylesheet" />
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-
-html, body {
-  height: 100%;
-  font-family: 'Inter', sans-serif;
-  overflow-x: hidden;
-}
-
-
-    body {
-      background: url('sky1.jpg') no-repeat center center fixed;
-      background-size: cover;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      text-align: center;
+    html, body {
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      background: transparent;
     }
-
-    /* === NAVBAR === */
-.glass-nav {
-  position: absolute;
-  top: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  justify-content: center;
-  gap: 28px;
-  padding: 10px 12px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 100px;
-  box-shadow:
-    inset 0 2px 6px rgba(255, 255, 255, 0.1),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.05),
-    0 10px 20px rgba(0, 0, 0, 0.05);
-  backdrop-filter: blur(6px);
-  z-index: 10;
-}
-
-
-
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('sky1.jpg') no-repeat center center;
+      background-size: cover;
+      z-index: -1;
+      pointer-events: none;
+    }
+    nav.glass-nav {
+      position: fixed;
+      top: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      padding: 10px 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 100px;
+      box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.1), inset 0 -2px 4px rgba(0, 0, 0, 0.05), 0 10px 20px rgba(0, 0, 0, 0.05);
+      backdrop-filter: blur(6px);
+      z-index: 10;
+    }
     .nav-link {
       text-decoration: none;
       color: rgba(0, 0, 0, 0.75);
@@ -61,50 +54,54 @@ html, body {
       padding: 4px 12px;
       transition: color 0.2s ease;
     }
-
     .nav-link:hover {
       color: rgba(0, 0, 0, 1);
     }
-
     .nav-link.active {
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 24px;
-      box-shadow:
-        inset 0 1px 2px rgba(255, 255, 255, 0.12),
-        inset 0 -1px 2px rgba(0, 0, 0, 0.05),
-        0 2px 6px rgba(0, 0, 0, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: rgba(0, 0, 0, 1);
     }
-
-    .nav-link.active::before {
-      content: '';
+    .nav-indicator {
       position: absolute;
-      top: 2px;
-      left: 4px;
-      width: 24%;
-      height: 40%;
-      background: radial-gradient(ellipse at top left, rgba(255, 255, 255, 0.3), transparent 60%);
-      border-radius: 50%;
-      filter: blur(3px);
-      pointer-events: none;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 34px;
+      width: 60px;
+      z-index: 0;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 100px;
+      transition: all 0.6s cubic-bezier(0.6, 0, 0.4, 1);
     }
-
-    /* === BUBBLE === */
+    .nav-indicator.shrink {
+      width: 20px !important;
+      border-radius: 50% !important;
+    }
+    main {
+      padding-top: 140px;
+      width: 100%;
+    }
+    section {
+      display: none;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 40px auto 0 auto;
+      text-align: center;
+    }
+    section.active {
+      display: block;
+    }
     .water-drop {
       position: relative;
       display: inline-block;
       background: rgba(255, 255, 255, 0.05);
       border-radius: 100px;
-      padding: 40px 60px;
+      padding: 60px 100px;
       text-align: center;
       border: 1px solid rgba(255, 255, 255, 0.3);
-      box-shadow:
-        inset 0 5px 12px rgba(255, 255, 255, 0.15),
-        inset 0 -5px 10px rgba(0, 0, 0, 0.1),
-        0 20px 40px rgba(0, 0, 0, 0.08);
+      box-shadow: inset 0 5px 12px rgba(255, 255, 255, 0.15), inset 0 -5px 10px rgba(0, 0, 0, 0.1), 0 20px 40px rgba(0, 0, 0, 0.08);
       background-clip: padding-box;
+      margin-top: 40px;
     }
-
     .water-drop::before {
       content: '';
       position: absolute;
@@ -117,81 +114,266 @@ html, body {
       filter: blur(6px);
       pointer-events: none;
     }
-
-    h1 {
-      font-size: 3rem;
+    .water-drop h1 {
+      font-size: 3.5rem;
       font-weight: 600;
-      color: rgba(0, 0, 0, 0.8);
-      margin-bottom: 1rem;
+      color: rgba(0, 0, 0, 0.85);
+      margin-bottom: 1.2rem;
     }
-
-    p {
-      font-size: 1.25rem;
+    .water-drop p {
+      font-size: 1.5rem;
       font-weight: 400;
-      color: rgba(0, 0, 0, 0.7);
+      color: rgba(0, 0, 0, 0.75);
     }
-
-    @media (max-width: 600px) {
-      .glass-nav {
-        gap: 16px;
-        padding: 8px 16px;
-        font-size: 0.9rem;
-      }
-
-      .nav-link {
-        padding: 4px 8px;
-      }
-
-      .water-drop {
-        padding: 40px 20px;
-      }
-
-      h1 {
-        font-size: 2rem;
-      }
-
-      p {
-        font-size: 1rem;
-      }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      padding: 2rem 0;
     }
-
-    body {
-  position: relative;
-  z-index: 1;
-  background: transparent;
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('sky1.jpg') no-repeat center center;
-  background-size: cover;
-  z-index: -1;
-  pointer-events: none;
-}
-
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 24px;
+      padding: 1rem;
+      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.1), 0 6px 12px rgba(0, 0, 0, 0.05);
+      backdrop-filter: blur(4px);
+    }
+    .card h2 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: rgba(0, 0, 0, 0.85);
+    }
+    .photos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+    }
+    .photos img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+    #about .about-text {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 60px;
+      padding: 60px 100px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: inset 0 5px 12px rgba(255, 255, 255, 0.15), inset 0 -5px 10px rgba(0, 0, 0, 0.1), 0 20px 40px rgba(0, 0, 0, 0.08);
+      background-clip: padding-box;
+      margin-top: 40px;
+    }
+    #about .about-text h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: rgba(0, 0, 0, 0.85);
+    }
+    #about .about-text p {
+      font-size: 1.4rem;
+      color: rgba(0, 0, 0, 0.75);
+    }
   </style>
 </head>
 <body>
-
-  <!-- NAVBAR -->
   <nav class="glass-nav">
-    <a href="index.html" class="nav-link active">Hey!</a>
-    <a href="world.html" class="nav-link">World</a>
-    <a href="about.html" class="nav-link">Story</a>
-    <a href="projects.html" class="nav-link">Projects</a>
+    <div class="nav-indicator"></div>
+    <a href="#" class="nav-link active" data-target="home">Hey!</a>
+    <a href="#" class="nav-link" data-target="world">World</a>
+    <a href="#" class="nav-link" data-target="about">Story</a>
+    <a href="#" class="nav-link" data-target="projects">Projects</a>
   </nav>
+  <main>
+    <section id="home" class="active">
+      <div class="water-drop">
+        <h1>Welcome</h1>
+        <p>Breathe deep... Let your ideas float...</p>
+      </div>
+    </section>
+    <section id="world">
+      <h1>🌍 Countries I’ve Visited</h1>
+       <!-- GRID -->
+  <div class="grid">
 
-  <!-- BUBBLE CONTENT -->
-  <div class="water-drop">
-    <h1>Welcome</h1>
-    <p>Breathe deep. Let your ideas float.</p>
-  </div>
+    <!-- Example Cards -->
+    <div class="card">
+      <h2>🇺🇸 United States</h2>
+      <div class="photos">
+        <img src="photos_usa/usa_1.jpg" alt="USA 1">
+        <img src="photos_usa/usa_2.jpg" alt="USA 2">
+        <img src="photos_usa/usa_3.jpg" alt="USA 3">
+      </div>
+    </div>
 
+    <div class="card">
+      <h2>🇨🇦 Canada</h2>
+      <div class="photos">
+        <img src="photos_canada/canada_1.jpg" alt="Canada 1">
+        <img src="photos_canada/canada_2.jpg" alt="Canada 2">
+        <img src="photos_canada/canada_3.jpg" alt="Canada 3">
+      </div>
+    </div>
 
+    <div class="card">
+      <h2>🇬🇧 United Kingdom</h2>
+      <div class="photos">
+        <img src="photos_uk/UK_1.jpg" alt="UK 1">
+        <img src="photos_uk/UK_2.jpg" alt="UK 2">
+        <img src="photos_uk/UK_3.jpg" alt="UK 3">
+      </div>
+    </div>
+
+    <!-- Ireland -->
+    <div class="card">
+      <h2>🇮🇪 Éire / Ireland</h2>
+      <div class="photos">
+        <img src="photos_ireland/Ireland_1.jpg" alt="Ireland 1">
+        <img src="photos_ireland/Ireland_2.jpg" alt="Ireland 2">
+        <img src="photos_ireland/Ireland_3.jpg" alt="Ireland 3">
+      </div>
+    </div>
+
+    <!-- Netherlands -->
+    <div class="card">
+      <h2>🇳🇱 Nederland</h2>
+      <div class="photos">
+        <img src="photos_netherlands/Netherlands_1.jpg" alt="Netherlands 1">
+        <img src="photos_netherlands/Netherlands_2.jpg" alt="Netherlands 2">
+        <img src="photos_netherlands/Netherlands_3.jpg" alt="Netherlands 3">
+      </div>
+    </div>
+
+    <!-- France -->
+    <div class="card">
+      <h2>🇫🇷 France</h2>
+      <div class="photos">
+        <img src="photos_france/France_1.jpg" alt="France 1">
+        <img src="photos_france/France_2.jpg" alt="France 2">
+        <img src="photos_france/France_3.jpg" alt="France 3">
+      </div>
+    </div>
+
+    <!-- Germany -->
+    <div class="card">
+      <h2>🇩🇪 Deutschland</h2>
+      <div class="photos">
+        <img src="photos_germany/Germany_1.jpg" alt="Germany 1">
+        <img src="photos_germany/Germany_2.jpg" alt="Germany 2">
+        <img src="photos_germany/Germany_3.jpg" alt="Germany 3">
+      </div>
+    </div>
+
+    <!-- Iceland -->
+    <div class="card">
+      <h2>🇮🇸 Ísland</h2>
+      <div class="photos">
+        <img src="photos_iceland/Iceland_1.jpg" alt="Iceland 1">
+        <img src="photos_iceland/Iceland_2.jpg" alt="Iceland 2">
+        <img src="photos_iceland/Iceland_3.jpg" alt="Iceland 3">
+      </div>
+    </div>
+
+    <!-- Italy -->
+    <div class="card">
+      <h2>🇮🇹 Italia</h2>
+      <div class="photos">
+        <img src="photos_italy/Italy_1.jpg" alt="Italy 1">
+        <img src="photos_italy/Italy_2.jpg" alt="Italy 2">
+        <img src="photos_italy/Italy_3.jpg" alt="Italy 3">
+      </div>
+    </div>
+
+    <!-- Austria -->
+    <div class="card">
+      <h2>🇦🇹 Österreich</h2>
+      <div class="photos">
+        <img src="photos_austria/Austria_1.jpg" alt="Austria 1">
+        <img src="photos_austria/Austria_2.jpg" alt="Austria 2">
+        <img src="photos_austria/Austria_3.jpg" alt="Austria 3">
+      </div>
+    </div>
+
+    <!-- Switzerland -->
+    <div class="card">
+      <h2>🇨🇭 Schweiz / Suisse / Svizzera / Svizra</h2>
+      <div class="photos">
+        <img src="photos_ch/Switzerland_1.jpg" alt="Switzerland 1">
+        <img src="photos_ch/Switzerland_2.jpg" alt="Switzerland 2">
+        <img src="photos_ch/Switzerland_3.jpg" alt="Switzerland 3">
+      </div>
+    </div>
+
+    <!-- Liechtenstein -->
+    <div class="card">
+      <h2>🇱🇮 Liechtenstein</h2>
+      <div class="photos">
+        <img src="photos_fl/Liechtenstein_1.jpg" alt="Liechtenstein 1">
+        <img src="photos_fl/Liechtenstein_2.jpg" alt="Liechtenstein 2">
+        <img src="photos_fl/Liechtenstein_3.jpg" alt="Liechtenstein 3">
+      </div>
+    </div>
+
+    </section>
+    <section id="about">
+      <div class="about-text">
+        <h1>Hi, my name is Dario.</h1>
+        <p>I'm a 20-year-old entrepreneur from Liechtenstein, proudly working at Apple since 2024. Purpose, passion and dedication drive me.</p>
+      </div>
+    </section>
+    <section id="projects">
+      <div class="projects-container">
+        <!-- Existing project cards -->
+      </div>
+    </section>
+  </main>
+  <script>
+    (function () {
+      if (window.__navScriptLoaded) return;
+      window.__navScriptLoaded = true;
+
+      const navLinks = document.querySelectorAll('.nav-link');
+      const indicator = document.querySelector('.nav-indicator');
+      const sections = document.querySelectorAll('section');
+
+      function moveIndicator(el, callback) {
+        const navRect = el.parentElement.getBoundingClientRect();
+        const rect = el.getBoundingClientRect();
+
+        indicator.classList.add('shrink');
+
+        setTimeout(() => {
+          indicator.style.left = `${rect.left - navRect.left}px`;
+        }, 150);
+
+        setTimeout(() => {
+          indicator.style.width = `${rect.width}px`;
+          indicator.classList.remove('shrink');
+          if (callback) callback();
+        }, 450);
+      }
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', e => {
+          e.preventDefault();
+
+          const target = link.getAttribute('data-target');
+
+          navLinks.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+
+          moveIndicator(link, () => {
+            sections.forEach(sec => sec.classList.remove('active'));
+            document.getElementById(target).classList.add('active');
+          });
+        });
+      });
+
+      window.addEventListener('load', () => {
+        const active = document.querySelector('.nav-link.active');
+        if (active) moveIndicator(active);
+      });
+    })();
+  </script>
 </body>
 </html>
