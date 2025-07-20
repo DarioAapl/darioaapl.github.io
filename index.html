@@ -149,6 +149,8 @@
       padding: 1rem;
       box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.1), 0 6px 12px rgba(0, 0, 0, 0.05);
       backdrop-filter: blur(4px);
+      position: relative; /* ensure stacking context exists */
+      z-index: 1;
     }
 
     .card h2 {
@@ -163,12 +165,31 @@
       gap: 0.5rem;
     }
 
-    .photos img {
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
-      object-fit: cover;
-    }
+.photos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.photos img {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  display: block;
+  margin: auto;
+  border-radius: 12px;
+  transition: transform 0.3s ease, z-index 0.3s ease;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.photos img.expanded {
+  transform: scale(2.2);
+  z-index: 9999;
+  position: relative;
+}
+
 
     #about .about-text {
       display: inline-block;
@@ -233,6 +254,37 @@
         font-size: 1.2rem;
       }
     }
+
+    #photo-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+}
+
+#photo-overlay img {
+  max-height: 90vh;
+  max-width: 90vw;
+  border-radius: 16px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+}
+
+    .photos img.expanded {
+  transform: scale(2.2);
+  z-index: 9999 !important;
+  position: relative;
+  border-radius: 12px;
+  pointer-events: auto;
+}
+
 
   </style>
 </head>
@@ -380,7 +432,7 @@
     <section id="about">
       <div class="about-text">
         <h1>Hi, my name is Dario.</h1>
-        <p>I'm a 20-year-old entrepreneur from Liechtenstein, proudly working at Apple since 2024. Purpose, passion and dedication drive me.</p>
+        <p>I'm a 20-year-old entrepreneur from Liechtenstein, proudly also working at Apple since 2024. Purpose, something cool is coming soon :3</p>
       </div>
     </section>
     <section id="projects">
@@ -389,6 +441,7 @@
       </div>
     </section>
   </main>
+    <div id="photo-overlay"></div>
   <script>
     (function () {
       if (window.__navScriptLoaded) return;
@@ -433,6 +486,34 @@
         if (active) moveIndicator(active);
       });
     })();
+
+  const overlay = document.getElementById('photo-overlay');
+  const photos = document.querySelectorAll('.photos img');
+
+  photos.forEach(photo => {
+    photo.addEventListener('click', () => {
+      const img = document.createElement('img');
+      img.src = photo.src;
+      img.alt = photo.alt;
+
+      // Clear previous content
+      overlay.innerHTML = '';
+      overlay.appendChild(img);
+      overlay.style.display = 'flex';
+    });
+  });
+
+  // Hide overlay when clicked or on scroll
+  overlay.addEventListener('click', () => {
+    overlay.style.display = 'none';
+  });
+
+  window.addEventListener('scroll', () => {
+    overlay.style.display = 'none';
+  });
+
+
   </script>
+
 </body>
 </html>
