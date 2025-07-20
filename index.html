@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dario Tino</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="shortcut icon" href="favicon.png" type="image/png" />
   <style>
     * {
       margin: 0;
@@ -76,20 +78,24 @@
       width: 20px !important;
       border-radius: 50% !important;
     }
+
     main {
-      padding-top: 140px;
+      padding-top: 100px;
       width: 100%;
     }
+
     section {
       display: none;
       padding: 2rem;
       max-width: 1200px;
-      margin: 40px auto 0 auto;
+      margin: 0 auto;
       text-align: center;
     }
+
     section.active {
       display: block;
     }
+
     .water-drop {
       position: relative;
       display: inline-block;
@@ -102,6 +108,7 @@
       background-clip: padding-box;
       margin-top: 40px;
     }
+
     .water-drop::before {
       content: '';
       position: absolute;
@@ -114,23 +121,27 @@
       filter: blur(6px);
       pointer-events: none;
     }
+
     .water-drop h1 {
       font-size: 3.5rem;
       font-weight: 600;
       color: rgba(0, 0, 0, 0.85);
       margin-bottom: 1.2rem;
     }
+
     .water-drop p {
       font-size: 1.5rem;
       font-weight: 400;
       color: rgba(0, 0, 0, 0.75);
     }
+
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 2rem;
       padding: 2rem 0;
     }
+
     .card {
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.2);
@@ -139,22 +150,26 @@
       box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.1), 0 6px 12px rgba(0, 0, 0, 0.05);
       backdrop-filter: blur(4px);
     }
+
     .card h2 {
       font-size: 1.4rem;
       margin-bottom: 1rem;
       color: rgba(0, 0, 0, 0.85);
     }
+
     .photos {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 0.5rem;
     }
+
     .photos img {
       width: 100%;
       height: auto;
       border-radius: 12px;
       object-fit: cover;
     }
+
     #about .about-text {
       display: inline-block;
       background: rgba(255, 255, 255, 0.05);
@@ -165,57 +180,59 @@
       background-clip: padding-box;
       margin-top: 40px;
     }
+
     #about .about-text h1 {
       font-size: 3rem;
       margin-bottom: 1rem;
       color: rgba(0, 0, 0, 0.85);
     }
+
     #about .about-text p {
       font-size: 1.4rem;
       color: rgba(0, 0, 0, 0.75);
     }
 
     @media (max-width: 768px) {
-  nav.glass-nav {
-    flex-direction: row !important; /* Force horizontal layout */
-    flex-wrap: nowrap;
-    overflow-x: auto; /* Allow horizontal scrolling if needed */
-    justify-content: flex-start;
-    gap: 16px;
-    padding: 10px 16px;
-    max-width: 100vw;
-    border-radius: 100px;
-  }
+      nav.glass-nav {
+        flex-direction: row !important;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+        gap: 16px;
+        padding: 10px 16px;
+        max-width: 100vw;
+        border-radius: 100px;
+      }
 
-  .nav-link {
-    flex: 0 0 auto; /* Prevent shrinking */
-    font-size: 1rem;
-    padding: 6px 12px;
-  }
+      .nav-link {
+        flex: 0 0 auto;
+        font-size: 1rem;
+        padding: 6px 12px;
+      }
 
-  .nav-indicator {
-    height: 32px;
-    width: 60px;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-}
+      .nav-indicator {
+        height: 32px;
+        width: 60px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
 
-@media (max-width: 600px) {
-  .water-drop {
-    width: 90%;
-    padding: 40px 20px;
-    margin: 40px auto 0 auto;
-  }
+    @media (max-width: 600px) {
+      .water-drop {
+        width: 90%;
+        padding: 40px 20px;
+        margin: 40px auto 0 auto;
+      }
 
-  .water-drop h1 {
-    font-size: 2.2rem;
-  }
+      .water-drop h1 {
+        font-size: 2.2rem;
+      }
 
-  .water-drop p {
-    font-size: 1.2rem;
-  }
-}
+      .water-drop p {
+        font-size: 1.2rem;
+      }
+    }
 
   </style>
 </head>
@@ -236,7 +253,8 @@
     </section>
     <section id="world">
       <h1>🌍 Countries I’ve Visited</h1>
-       <!-- GRID -->
+      <div class="grid">
+  <!-- GRID -->
   <div class="grid">
 
     <!-- Example Cards -->
@@ -357,6 +375,7 @@
       </div>
     </div>
 
+      </div>
     </section>
     <section id="about">
       <div class="about-text">
@@ -399,12 +418,9 @@
       navLinks.forEach(link => {
         link.addEventListener('click', e => {
           e.preventDefault();
-
           const target = link.getAttribute('data-target');
-
           navLinks.forEach(l => l.classList.remove('active'));
           link.classList.add('active');
-
           moveIndicator(link, () => {
             sections.forEach(sec => sec.classList.remove('active'));
             document.getElementById(target).classList.add('active');
