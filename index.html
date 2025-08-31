@@ -26,12 +26,13 @@
     *{ box-sizing: border-box; }
     html{ scroll-behavior: smooth; }
 
+    /* ---------- SITE-WIDE BACKGROUND (desktop & tablet) ---------- */
     body{
       margin:0;
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
       color:var(--text);
       line-height:1.5;
-      background: url('sky1.jpg') center/cover fixed no-repeat;
+      background: url('sky1.jpg') center / cover fixed no-repeat;  /* galaxy everywhere by default */
       min-height:100vh;
     }
     body::before{
@@ -80,7 +81,7 @@
     .scroll-indicator span{ font-size:12px; letter-spacing:.08em; text-transform:lowercase; }
     @keyframes bob{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(8px);} }
 
-    .slogan-wrap{ width:100%; display:flex; justify-content:center; align-items:center; }
+    .slogan-wrap{ width:100%; display:flex; justify-content:center; align-items:center; position:relative; z-index:1; }
     .slogan-svg{ width:min(100%, 1400px); height:auto; display:block; filter: drop-shadow(0 6px 22px rgba(0,0,0,.22)); }
     .slogan-svg text{
       font: 800 clamp(72px, 14vw, 180px)/0.9 "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
@@ -101,122 +102,70 @@
       border-color: rgba(255,255,255,0.16);
     }
 
-    /* photo slot */
-    .thumb{
-      width:100%;
-      aspect-ratio: 16 / 10;
-      object-fit:cover;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,0.18);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);
-      background:rgba(255,255,255,0.03);
-      display:block;
-    }
+    .thumb{ width:100%; aspect-ratio:16/10; object-fit:cover; border-radius:16px; border:1px solid rgba(255,255,255,0.18); box-shadow: inset 0 1px 0 rgba(255,255,255,0.12); background:rgba(255,255,255,0.03); display:block; }
 
-    /* ---------- STORY — Horizontal Timeline (no track line) ---------- */
-    #story .glass.content{
-      border-radius:40px;
-      padding: clamp(28px, 4vw, 56px);
-    }
-
-    #story .h-timeline{
-      --card-min: clamp(240px, 42vw, 340px);
-      margin-top: 8px;
-    }
-
+    /* ---------- STORY ---------- */
+    #story .glass.content{ border-radius:40px; padding: clamp(28px, 4vw, 56px); }
+    #story .h-timeline{ --card-min: clamp(240px, 42vw, 340px); margin-top: 8px; }
     #story .h-scroll{
-      position: relative;
-      display: flex;
-      gap: clamp(14px, 2vw, 22px);
-      overflow-x: auto;
-      padding: 24px 8px 30px;        /* normal top padding; no line above */
-      scroll-snap-type: x mandatory;
+      position: relative; display: flex; gap: clamp(14px, 2vw, 22px);
+      overflow-x: auto; padding: 24px 8px 30px; scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
       -webkit-mask-image: linear-gradient(to right, transparent, #000 28px, #000 calc(100% - 28px), transparent);
               mask-image: linear-gradient(to right, transparent, #000 28px, #000 calc(100% - 28px), transparent);
     }
-
-    #story .milestone{
-      scroll-snap-align: start;
-      min-width: var(--card-min);
-      border-color: rgba(255,255,255,0.16);
-      padding: clamp(16px, 2.2vw, 22px);
-    }
-
-    #story .milestone .year{
-      display:inline-flex; align-items:center; gap:8px;
-      font-weight:600;
-      margin-bottom:6px;
-    }
-
-    #story .milestone h3{
-      margin:0 0 6px; font-size:18px; letter-spacing:-0.01em;
-      line-height:1.2;
-    }
-
-    #story .milestone .meta{
-      font-size:13px; color:var(--text-dim);
-    }
-
-    #story .brand{
-      background: linear-gradient(90deg, #fff, rgba(255,255,255,0.7));
-      -webkit-background-clip: text;
-              background-clip: text;
-      color: transparent
-    }
-
-    /* Logo next to brand, sized to title height */
-    #story .brand-wrap{
-      display:inline-flex;
-      align-items:baseline;
-      gap:8px;
-    }
-    #story .brand-wrap .mark{
-      height:1em;
-      width:auto;
-      vertical-align:baseline;
-      border-radius:4px;
-      box-shadow: 0 0 0 1px rgba(255,255,255,0.15) inset;
-    }
-
-    #story .divider{
-      height:1px; margin:10px 0;
-      background: linear-gradient(to right, rgba(255,255,255,0.22), rgba(255,255,255,0.08));
-      border-radius:999px;
-    }
-
-    #story .milestone.future{
-      position:relative; overflow:hidden;
-      background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
-    }
-    #story .milestone.future .next{
-      font-size:14px; color:var(--text-dim);
-    }
-    @keyframes sheen {
-      from { transform: translateX(-120%); }
-      to   { transform: translateX(120%); }
-    }
+    #story .milestone{ scroll-snap-align: start; min-width: var(--card-min); border-color: rgba(255,255,255,0.16); padding: clamp(16px, 2.2vw, 22px); }
+    #story .milestone .year{ display:inline-flex; align-items:center; gap:8px; font-weight:600; margin-bottom:6px; }
+    #story .milestone h3{ margin:0 0 6px; font-size:18px; letter-spacing:-0.01em; line-height:1.2; }
+    #story .milestone .meta{ font-size:13px; color:var(--text-dim); }
+    #story .brand{ background: linear-gradient(90deg, #fff, rgba(255,255,255,0.7)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    #story .brand-wrap{ display:inline-flex; align-items:baseline; gap:8px; }
+    #story .brand-wrap .mark{ height:1em; width:auto; vertical-align:baseline; border-radius:4px; box-shadow: 0 0 0 1px rgba(255,255,255,0.15) inset; }
+    #story .divider{ height:1px; margin:10px 0; background: linear-gradient(to right, rgba(255,255,255,0.22), rgba(255,255,255,0.08)); border-radius:999px; }
+    #story .milestone.future{ position:relative; overflow:hidden; background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03)); }
+    #story .milestone.future .next{ font-size:14px; color:var(--text-dim); }
+    @keyframes sheen { from { transform: translateX(-120%); } to { transform: translateX(120%); } }
     @media (prefers-reduced-motion: no-preference){
       #story .milestone.future::after{
-        content:"";
-        position:absolute; inset:-2px;
+        content:""; position:absolute; inset:-2px;
         background: linear-gradient(120deg, transparent 42%, rgba(255,255,255,0.35) 50%, transparent 58%);
-        filter: blur(0.5px);
-        animation: sheen 4.2s cubic-bezier(.3,.6,.2,1) infinite;
-        pointer-events:none;
+        filter: blur(0.5px); animation: sheen 4.2s cubic-bezier(.3,.6,.2,1) infinite; pointer-events:none;
       }
     }
 
-    /* ---------------- Mobile-only stacked hero text (fits all 4 lines) ---------------- */
+    /* ---------- MOBILE: switch to sky30.jpeg + stacked headline ---------- */
     .slogan-svg--stacked { display:none; }
-    @media (max-width: 640px){
-      .slogan-svg--inline { display:none; }     /* hide desktop version on phones */
-      .slogan-svg--stacked { display:block; width:100%; max-width:520px; }
-      .slogan-svg--stacked text{
-        font: 800 clamp(56px, 19vw, 120px)/1 "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
-        text-anchor: middle; dominant-baseline: central;
-      }
-    }
+
+@media (max-width: 640px){
+  body{
+    /* reset the desktop shorthand so nothing lingers */
+    background: none;
+
+    /* mobile background */
+    background-image: url('sky30.jpeg');
+    background-repeat: no-repeat;
+    background-size: contain;          /* <-- fit entire photo */
+    background-position: 50% 0%;       /* center horizontally, anchor to top */
+    background-attachment: scroll;     /* iOS-friendly */
+    background-color: #0a2b3a;         /* color close to the photo for edges */
+  }
+
+  /* lighter overlay so the photo shows through */
+  body::before{
+    background:
+      radial-gradient(900px 540px at 20% -10%, rgba(255,255,255,.06), transparent 60%),
+      radial-gradient(800px 480px at 90% 10%, rgba(255,255,255,.05), transparent 60%),
+      linear-gradient(to bottom, rgba(0,0,0,.03), rgba(0,0,0,.04), rgba(0,0,0,.05));
+  }
+
+  .slogan-svg--inline { display:none; }
+  .slogan-svg--stacked { display:block; width:88vw; max-width:none; }
+  .slogan-svg--stacked text{
+    font: 800 clamp(64px, 22vmin, 150px)/1.05 "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+    text-anchor: middle; dominant-baseline: central;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -254,10 +203,10 @@
           <text x="800" y="140" filter="url(#outerStroke)">THE TIME IS NOW</text>
         </svg>
 
-        <!-- Mobile stacked version (starts higher + tighter spacing so 'NOW' is visible) -->
-        <svg class="slogan-svg slogan-svg--stacked" viewBox="0 0 800 720" role="img" aria-label="THE TIME IS NOW">
+        <!-- Mobile stacked version -->
+        <svg class="slogan-svg slogan-svg--stacked" viewBox="0 0 800 600" role="img" aria-label="THE TIME IS NOW">
           <defs>
-            <filter id="outerStrokeStack" filterUnits="userSpaceOnUse" x="-100" y="-100" width="1000" height="920">
+            <filter id="outerStrokeStack" filterUnits="userSpaceOnUse" x="-100" y="-100" width="1000" height="800">
               <feMorphology in="SourceAlpha" operator="dilate" radius="1.4" result="dilated"/>
               <feComposite in="dilated" in2="SourceAlpha" operator="out" result="ring"/>
               <feFlood flood-color="#ffffff" result="white"/>
@@ -275,27 +224,30 @@
               <animate attributeName="x2" values="0; 1600" dur="6s" repeatCount="indefinite"/>
             </linearGradient>
             <filter id="glowBlurStack" x="-30%" y="-50%" width="160%" height="200%">
-              <feGaussianBlur stdDeviation="30"/>
+              <feGaussianBlur stdDeviation="12"/>
             </filter>
           </defs>
 
-          <text x="400" y="110" fill="url(#shimmerStack)" opacity="0.85" filter="url(#glowBlurStack)">
-            <tspan x="400" dy="0">THE</tspan>
-            <tspan x="400" dy="1.1em">TIME</tspan>
-            <tspan x="400" dy="1.1em">IS</tspan>
-            <tspan x="400" dy="1.1em">NOW</tspan>
+          <!-- shimmer -->
+          <text x="50%" y="50%" fill="url(#shimmerStack)" opacity="0.85" filter="url(#glowBlurStack)">
+            <tspan x="50%" dy="-1.65em">THE</tspan>
+            <tspan x="50%" dy="1.1em">TIME</tspan>
+            <tspan x="50%" dy="1.1em">IS</tspan>
+            <tspan x="50%" dy="1.1em">NOW</tspan>
           </text>
-          <text x="400" y="110" fill="#ffffff" fill-opacity="0.30">
-            <tspan x="400" dy="0">THE</tspan>
-            <tspan x="400" dy="1.1em">TIME</tspan>
-            <tspan x="400" dy="1.1em">IS</tspan>
-            <tspan x="400" dy="1.1em">NOW</tspan>
+          <!-- fill -->
+          <text x="50%" y="50%" fill="#ffffff" fill-opacity="0.30">
+            <tspan x="50%" dy="-1.65em">THE</tspan>
+            <tspan x="50%" dy="1.1em">TIME</tspan>
+            <tspan x="50%" dy="1.1em">IS</tspan>
+            <tspan x="50%" dy="1.1em">NOW</tspan>
           </text>
-          <text x="400" y="110" filter="url(#outerStrokeStack)">
-            <tspan x="400" dy="0">THE</tspan>
-            <tspan x="400" dy="1.1em">TIME</tspan>
-            <tspan x="400" dy="1.1em">IS</tspan>
-            <tspan x="400" dy="1.1em">NOW</tspan>
+          <!-- outline -->
+          <text x="50%" y="50%" filter="url(#outerStrokeStack)">
+            <tspan x="50%" dy="-1.65em">THE</tspan>
+            <tspan x="50%" dy="1.1em">TIME</tspan>
+            <tspan x="50%" dy="1.1em">IS</tspan>
+            <tspan x="50%" dy="1.1em">NOW</tspan>
           </text>
         </svg>
       </div>
@@ -412,94 +364,6 @@
       </div>
     </section>
 
-    <!-- Story -->
-    <section id="story">
-      <div class="glass content">
-        <h2>Story</h2>
-
-        <div class="h-timeline">
-          <div class="h-scroll">
-            <!-- 2024 — beskou -->
-            <article class="glass card tilt milestone" data-tilt>
-              <div class="year">
-                <span class="pill">2024</span>
-                <span>Founder</span>
-              </div>
-              <h3>
-                Founded
-                <span class="brand-wrap">
-                  <span class="brand">beskou</span>
-                  <img class="mark" src="beskou.jpg" alt="beskou logo" loading="lazy">
-                </span>
-              </h3>
-              <div class="meta">Bootstrapped from zero → first users</div>
-              <div class="divider"></div>
-              <div class="stack">
-                <span class="pill">Product</span>
-                <span class="pill">Early-stage</span>
-                <span class="pill">Shipping</span>
-              </div>
-            </article>
-
-            <!-- 2024 — Sindesi -->
-            <article class="glass card tilt milestone" data-tilt>
-              <div class="year">
-                <span class="pill">2024</span>
-                <span>Founder</span>
-              </div>
-              <h3>
-                Founded
-                <span class="brand-wrap">
-                  <span class="brand">Sindesi</span>
-                  <img class="mark" src="sindesi.jpg" alt="Sindesi logo" loading="lazy">
-                </span>
-              </h3>
-              <div class="meta">AI-first note-taking that thinks with you</div>
-              <div class="divider"></div>
-              <div class="stack">
-                <span class="pill">Next.js</span>
-                <span class="pill">Edge</span>
-                <span class="pill">Vectors</span>
-              </div>
-            </article>
-
-            <!-- 2024 — Apple -->
-            <article class="glass card tilt milestone" data-tilt>
-              <div class="year">
-                <span class="pill">2024</span>
-                <span>🍎 Joined Apple</span>
-              </div>
-              <h3>Joined <span class="brand">Apple</span></h3>
-              <div class="meta">Built at scale, learned fast, obsessed over details</div>
-              <div class="divider"></div>
-              <div class="stack">
-                <span class="pill">Craft</span>
-                <span class="pill">Systems</span>
-                <span class="pill">Impact</span>
-              </div>
-            </article>
-
-            <!-- Future -->
-            <article class="glass card tilt milestone future" data-tilt aria-label="Future">
-              <div class="year">
-                <span class="pill">Future</span>
-                <span>on the horizon ↗</span>
-              </div>
-              <h3>What’s next</h3>
-              <div class="meta next">More curious products, more outdoors, more learning.</div>
-              <div class="divider"></div>
-              <div class="stack">
-                <span class="pill">Exploration</span>
-                <span class="pill">Collabs</span>
-                <span class="pill">0→1→N</span>
-              </div>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Projects -->
     <section id="projects">
       <div class="glass content">
         <h2>Projects</h2>
@@ -582,7 +446,6 @@
         });
       });
     })();
-    /* Removed timeline-progress JS since the line is gone */
   </script>
 </body>
 </html>
