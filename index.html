@@ -31,8 +31,9 @@
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
       color:var(--text);
       line-height:1.5;
-      background: url('sky1.jpg') center/cover fixed no-repeat;
+      background: url('sky1.jpg') center/cover fixed no-repeat; /* desktop/tablet default */
       min-height:100vh;
+      background-color:#0a0d12; /* fallback around image when using contain on mobile */
     }
     body::before{
       content:"";
@@ -81,11 +82,14 @@
     @keyframes bob{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(8px);} }
 
     .slogan-wrap{ width:100%; display:flex; justify-content:center; align-items:center; }
-    .slogan-svg{ width:min(100%, 1400px); height:auto; display:block; filter: drop-shadow(0 6px 22px rgba(0,0,0,.22)); }
+    .slogan-svg{ width:min(100%, 1400px); height:auto; display:block; filter: drop-shadow(0 6px 22px rgba(0,0,0,.22)); overflow:visible; }
     .slogan-svg text{
       font: 800 clamp(72px, 14vw, 180px)/0.9 "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
       text-anchor: middle; dominant-baseline: central;
     }
+    /* default: show inline, hide stacked */
+    .slogan-svg.inline{ display:block; }
+    .slogan-svg.stacked{ display:none; }
 
     #world .glass.content, #projects .glass.content{
       border-radius:40px;
@@ -208,6 +212,30 @@
         pointer-events:none;
       }
     }
+
+    /* ---------------- MOBILE TWEAKS ---------------- */
+    @media (max-width: 768px){
+      /* Fit background art without aggressive crop; avoid iOS issues with fixed */
+      body{
+        background-image: url('sky1.jpg');
+        background-size: contain;        /* keep full image visible */
+        background-repeat: no-repeat;
+        background-position: center top;
+        background-attachment: scroll;   /* smoother on mobile */
+      }
+      .hero{ min-height:100svh; }
+
+      /* Stack hero words vertically */
+      .slogan-svg.inline{ display:none; }
+      .slogan-svg.stacked{ display:block; width:min(100%, 1000px); }
+      .slogan-svg.stacked text{
+        font: 800 clamp(56px, 16vw, 120px)/1.05 "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+      }
+      .slogan-wrap{ padding: 24px 0; }
+
+      /* Slightly tighter grids on small screens */
+      #world .grid, #projects .grid{ grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -215,7 +243,8 @@
     <!-- Hero -->
     <section id="hey" class="hero scene">
       <div class="slogan-wrap">
-        <svg class="slogan-svg" viewBox="0 0 1600 280" role="img" aria-label="THE TIME IS NOW">
+        <!-- Desktop/Tablet: inline headline -->
+        <svg class="slogan-svg inline" viewBox="0 0 1600 280" role="img" aria-label="THE TIME IS NOW">
           <defs>
             <filter id="outerStroke" filterUnits="userSpaceOnUse" x="-100" y="-100" width="1800" height="480">
               <feMorphology in="SourceAlpha" operator="dilate" radius="1.4" result="dilated"/>
@@ -242,6 +271,51 @@
           <text x="800" y="140" fill="url(#shimmer)" opacity="0.85" filter="url(#glowBlur)">THE TIME IS NOW</text>
           <text x="800" y="140" fill="#ffffff" fill-opacity="0.30">THE TIME IS NOW</text>
           <text x="800" y="140" filter="url(#outerStroke)">THE TIME IS NOW</text>
+        </svg>
+
+        <!-- Mobile: stacked headline (each word on its own line) -->
+        <svg class="slogan-svg stacked" viewBox="0 0 1600 800" role="img" aria-label="THE TIME IS NOW">
+          <defs>
+            <filter id="outerStrokeStack" filterUnits="userSpaceOnUse" x="-100" y="-100" width="1800" height="1200">
+              <feMorphology in="SourceAlpha" operator="dilate" radius="1.4" result="dilated"/>
+              <feComposite in="dilated" in2="SourceAlpha" operator="out" result="ring"/>
+              <feFlood flood-color="#ffffff" result="white"/>
+              <feComposite in="white" in2="ring" operator="in" result="outer"/>
+              <feMerge><feMergeNode in="outer"/></feMerge>
+            </filter>
+            <linearGradient id="shimmerStack" gradientUnits="userSpaceOnUse" x1="-400" y1="0" x2="0" y2="0">
+              <stop offset="0%"   stop-color="#fff" stop-opacity="0"/>
+              <stop offset="30%"  stop-color="#fff" stop-opacity="0.18"/>
+              <stop offset="45%"  stop-color="#fff" stop-opacity="1"/>
+              <stop offset="55%"  stop-color="#fff" stop-opacity="1"/>
+              <stop offset="70%"  stop-color="#fff" stop-opacity="0.18"/>
+              <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+              <animate attributeName="x1" values="-400; 1800" dur="6s" repeatCount="indefinite"/>
+              <animate attributeName="x2" values="0; 2200" dur="6s" repeatCount="indefinite"/>
+            </linearGradient>
+            <filter id="glowBlurStack" x="-30%" y="-50%" width="160%" height="200%">
+              <feGaussianBlur stdDeviation="30"/>
+            </filter>
+          </defs>
+
+          <text x="800" y="160" fill="url(#shimmerStack)" opacity="0.85" filter="url(#glowBlurStack)">
+            <tspan x="800" dy="0">THE</tspan>
+            <tspan x="800" dy="160">TIME</tspan>
+            <tspan x="800" dy="160">IS</tspan>
+            <tspan x="800" dy="160">NOW</tspan>
+          </text>
+          <text x="800" y="160" fill="#ffffff" fill-opacity="0.30">
+            <tspan x="800" dy="0">THE</tspan>
+            <tspan x="800" dy="160">TIME</tspan>
+            <tspan x="800" dy="160">IS</tspan>
+            <tspan x="800" dy="160">NOW</tspan>
+          </text>
+          <text x="800" y="160" filter="url(#outerStrokeStack)">
+            <tspan x="800" dy="0">THE</tspan>
+            <tspan x="800" dy="160">TIME</tspan>
+            <tspan x="800" dy="160">IS</tspan>
+            <tspan x="800" dy="160">NOW</tspan>
+          </text>
         </svg>
       </div>
 
