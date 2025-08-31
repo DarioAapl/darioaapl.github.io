@@ -1,720 +1,533 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dario Tino</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/png" href="favicon.png" />
-  <link rel="shortcut icon" href="favicon.png" type="image/png" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>THE TIME IS NOW — Portfolio</title>
+  <meta name="description" content="THE TIME IS NOW — personal portfolio with Hey, World, Story, and Projects." />
+
+  <!-- Inter font -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root{
+      --card-bg: rgba(255,255,255,0.06);
+      --card-border: rgba(255,255,255,0.28);
+      --text: rgba(255,255,255,0.96);
+      --text-dim: rgba(255,255,255,0.80);
+      --shadow: 0 12px 30px -20px rgba(0,0,0,0.30);
+      --maxw: 1120px;
+      --radius: 32px;
+      --headline-outline: 1.4;
     }
 
-    html, body {
-      height: 100%;
-      font-family: 'Inter', sans-serif;
-      overflow-x: hidden;
-      background: transparent;
+    *{ box-sizing: border-box; }
+    html{ scroll-behavior: smooth; }
+
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color:var(--text);
+      line-height:1.5;
+      background: url('sky1.jpg') center/cover fixed no-repeat;
+      min-height:100vh;
+    }
+    body::before{
+      content:"";
+      position:fixed; inset:0; z-index:0; pointer-events:none;
+      background:
+        radial-gradient(1200px 800px at 20% -10%, rgba(255,255,255,.22), transparent 60%),
+        radial-gradient(1000px 600px at 90% 10%, rgba(255,255,255,.16), transparent 60%),
+        linear-gradient(to bottom, rgba(0,0,0,.08), rgba(0,0,0,.06), rgba(0,0,0,.12));
     }
 
-    body {
-      background: url('sky1.jpg') no-repeat center center;
-      background-size: cover;
+    .wrap{ width:100%; max-width:var(--maxw); margin:0 auto; padding:0 1rem; position:relative; z-index:1; }
+
+    section{ padding:64px 0; scroll-margin-top:24px; }
+    .hero{ min-height:100dvh; display:grid; place-items:center; position:relative; }
+    @supports not (height:100dvh){ .hero{ min-height:100vh; } }
+
+    .glass{
+      position:relative; border-radius:var(--radius);
+      background:var(--card-bg); border:1px solid var(--card-border);
+      box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,0.12);
+      -webkit-backdrop-filter: blur(14px) saturate(140%);
+      backdrop-filter: blur(14px) saturate(140%);
+    }
+    .glass::before{
+      content:""; position:absolute; inset:0; border-radius:var(--radius); pointer-events:none;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.12), rgba(255,255,255,0.04) 35%, transparent 70%);
+    }
+    .content{ padding:24px; }
+
+    h2{ font-size:clamp(22px, 2.4vw, 32px); margin:0 0 16px; }
+    .muted{ color:var(--text-dim); font-size:14px; }
+    .pill{ display:inline-block; padding:6px 10px; font-size:12px; border-radius:999px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.18); color:var(--text); }
+    .grid{ display:grid; gap:16px; }
+    .card{ padding:24px; }
+    .stack{ display:inline-flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+
+    footer{ padding-bottom:80px; text-align:center; color:rgba(255,255,255,0.6); font-size:12px; }
+
+    .scene{ perspective:1200px; }
+    .tilt{ transform:translateZ(0); transform-style:preserve-3d; will-change:transform; transition:transform .25s ease, box-shadow .25s ease; }
+    .tilt:hover{ box-shadow:var(--shadow), 0 10px 30px -10px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.16); }
+
+    .scroll-indicator{ position:absolute; bottom:28px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:6px; color:var(--text-dim); text-decoration:none; opacity:.9; text-shadow:0 1px 2px rgba(0,0,0,.2); }
+    .scroll-indicator svg{ width:26px; height:26px; animation:bob 2.8s ease-in-out infinite; }
+    .scroll-indicator span{ font-size:12px; letter-spacing:.08em; text-transform:lowercase; }
+    @keyframes bob{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(8px);} }
+
+    .slogan-wrap{ width:100%; display:flex; justify-content:center; align-items:center; }
+    .slogan-svg{ width:min(100%, 1400px); height:auto; display:block; filter: drop-shadow(0 6px 22px rgba(0,0,0,.22)); }
+    .slogan-svg text{
+      font: 800 clamp(72px, 14vw, 180px)/0.9 "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+      text-anchor: middle; dominant-baseline: central;
     }
 
-
-    nav.glass-nav {
-      position: fixed;
-      top: 40px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      justify-content: center;
-      gap: 28px;
-      padding: 10px 12px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 100px;
-      box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.1), inset 0 -2px 4px rgba(0, 0, 0, 0.05), 0 10px 20px rgba(0, 0, 0, 0.05);
-      z-index: 10;
+    #world .glass.content, #projects .glass.content{
+      border-radius:40px;
+      padding: clamp(28px, 4vw, 56px);
     }
-
-    .nav-link {
-      text-decoration: none;
-      color: rgba(0, 0, 0, 0.75);
-      font-size: 1rem;
-      font-weight: 400;
-      position: relative;
-      padding: 4px 12px;
-      transition: color 0.2s ease;
-    }
-
-    .nav-link:hover,
-    .nav-link.active {
-      color: rgba(0, 0, 0, 1);
-    }
-
-    .nav-indicator {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      height: 34px;
-      width: 60px;
-      z-index: 0;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 100px;
-      transition: all 0.6s cubic-bezier(0.6, 0, 0.4, 1);
-    }
-
-    .nav-indicator.shrink {
-      width: 20px !important;
-      border-radius: 50% !important;
-    }
-
-    main {
-      padding-top: 100px;
-      width: 100%;
-    }
-
-    section {
-      display: none;
-      padding: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    section.active {
-      display: block;
-    }
-
-    .water-drop {
-      position: relative;
-      display: inline-block;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 100px;
-      padding: 60px 100px;
-      text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      box-shadow: inset 0 5px 12px rgba(255, 255, 255, 0.15), inset 0 -5px 10px rgba(0, 0, 0, 0.1), 0 20px 40px rgba(0, 0, 0, 0.08);
-      background-clip: padding-box;
-      margin-top: 40px;
-    }
-
-    .water-drop::before {
-      content: '';
-      position: absolute;
-      top: 10%;
-      left: 10%;
-      width: 60%;
-      height: 40%;
-      background: radial-gradient(ellipse at top left, rgba(255, 255, 255, 0.4), transparent 70%);
-      border-radius: 50%;
-      filter: blur(6px);
-      pointer-events: none;
-    }
-
-    .water-drop h1 {
-      font-size: 3.5rem;
-      font-weight: 600;
-      color: rgba(0, 0, 0, 0.85);
-      margin-bottom: 1.2rem;
-    }
-
-    .water-drop p {
-      font-size: 1.5rem;
-      font-weight: 400;
-      color: rgba(0, 0, 0, 0.75);
-    }
-
-    .grid {
-      display: grid;
+    #world .grid, #projects .grid{
+      gap: clamp(18px, 2.4vw, 36px);
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      padding: 2rem 0;
     }
-.card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 40px; /* Less pill-like */
-  padding: 50px 40px;
-  text-align: center;
-  box-shadow:
-    inset 0 5px 12px rgba(255, 255, 255, 0.15),
-    inset 0 -5px 10px rgba(0, 0, 0, 0.1),
-    0 20px 40px rgba(0, 0, 0, 0.08);
-  backdrop-filter: blur(6px);
-  background-clip: padding-box;
-  width: 100%;
-  max-width: 800px; /* Give more room for the photos */
-  margin: auto;
-}
-
-
-
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 10%;
-      left: 10%;
-      width: 60%;
-      height: 40%;
-      background: radial-gradient(ellipse at top left, rgba(255, 255, 255, 0.4), transparent 70%);
-      border-radius: 50%;
-      filter: blur(6px);
-      pointer-events: none;
-      z-index: 0;
+    #world .glass.card, #projects .glass.card{
+      border-radius:24px;
+      padding: clamp(18px, 2vw, 28px);
+      border-color: rgba(255,255,255,0.16);
     }
 
-    .card h2 {
-      font-size: 1.4rem;
-      margin-bottom: 1rem;
-      color: rgba(0, 0, 0, 0.85);
+    /* photo slot */
+    .thumb{
+      width:100%;
+      aspect-ratio: 16 / 10;
+      object-fit:cover;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,0.18);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);
+      background:rgba(255,255,255,0.03);
+      display:block;
+    }
+
+    /* ---------- STORY — Horizontal Timeline (no track line) ---------- */
+    #story .glass.content{
+      border-radius:40px;
+      padding: clamp(28px, 4vw, 56px);
+    }
+
+    #story .h-timeline{
+      --card-min: clamp(240px, 42vw, 340px);
+      margin-top: 8px;
+    }
+
+    #story .h-scroll{
       position: relative;
-      z-index: 1;
+      display: flex;
+      gap: clamp(14px, 2vw, 22px);
+      overflow-x: auto;
+      padding: 24px 8px 30px;        /* normal top padding; no line above */
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      -webkit-mask-image: linear-gradient(to right, transparent, #000 28px, #000 calc(100% - 28px), transparent);
+              mask-image: linear-gradient(to right, transparent, #000 28px, #000 calc(100% - 28px), transparent);
     }
 
-
-    .photos {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.5rem;
+    #story .milestone{
+      scroll-snap-align: start;
+      min-width: var(--card-min);
+      border-color: rgba(255,255,255,0.16);
+      padding: clamp(16px, 2.2vw, 22px);
     }
 
-.photos {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem;
-  align-items: center;
-}
-
-
-
-    .photos img {
-      width: 100%;
-      max-width: 100px;
-      aspect-ratio: 2 / 3;
-      object-fit: cover;
-      display: block;
-      margin: auto;
-      border-radius: 12px;
-      transition: transform 0.3s ease, z-index 0.3s ease;
-      cursor: pointer;
-      z-index: 1;
+    #story .milestone .year{
+      display:inline-flex; align-items:center; gap:8px;
+      font-weight:600;
+      margin-bottom:6px;
     }
 
-    .photos img.expanded {
-      transform: scale(2.2);
-      z-index: 9999;
-      position: relative;
+    #story .milestone h3{
+      margin:0 0 6px; font-size:18px; letter-spacing:-0.01em;
+      line-height:1.2;
     }
 
-
-    #about .about-text {
-      display: inline-block;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 60px;
-      padding: 60px 100px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      box-shadow: inset 0 5px 12px rgba(255, 255, 255, 0.15), inset 0 -5px 10px rgba(0, 0, 0, 0.1), 0 20px 40px rgba(0, 0, 0, 0.08);
-      background-clip: padding-box;
-      margin-top: 40px;
+    #story .milestone .meta{
+      font-size:13px; color:var(--text-dim);
     }
 
-    #about .about-text h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      color: rgba(0, 0, 0, 0.85);
+    #story .brand{
+      background: linear-gradient(90deg, #fff, rgba(255,255,255,0.7));
+      -webkit-background-clip: text;
+              background-clip: text;
+      color: transparent;
     }
 
-    #about .about-text p {
-      font-size: 1.4rem;
-      color: rgba(0, 0, 0, 0.75);
+    /* Logo next to brand, sized to title height */
+    #story .brand-wrap{
+      display:inline-flex;
+      align-items:baseline;                 /* keeps logo on text baseline */
+      gap:8px;
+    }
+    #story .brand-wrap .mark{
+      height:1em;                           /* as tall as the title text */
+      width:auto;
+      vertical-align:baseline;
+      border-radius:4px;                    /* optional: soft corners for raster logos */
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.15) inset;
     }
 
-    @media (max-width: 768px) {
-      nav.glass-nav {
-        flex-direction: row !important;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        justify-content: flex-start;
-        gap: 16px;
-        padding: 10px 16px;
-        max-width: 100vw;
-        border-radius: 100px;
-      }
+    /* pretty divider inside cards */
+    #story .divider{
+      height:1px; margin:10px 0;
+      background: linear-gradient(to right, rgba(255,255,255,0.22), rgba(255,255,255,0.08));
+      border-radius:999px;
+    }
 
-      .nav-link {
-        flex: 0 0 auto;
-        font-size: 1rem;
-        padding: 6px 12px;
-      }
-
-      .nav-indicator {
-        height: 32px;
-        width: 60px;
-        top: 50%;
-        transform: translateY(-50%);
+    /* FUTURE card with shimmer */
+    #story .milestone.future{
+      position:relative; overflow:hidden;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+    }
+    #story .milestone.future .next{
+      font-size:14px; color:var(--text-dim);
+    }
+    @keyframes sheen {
+      from { transform: translateX(-120%); }
+      to   { transform: translateX(120%); }
+    }
+    @media (prefers-reduced-motion: no-preference){
+      #story .milestone.future::after{
+        content:"";
+        position:absolute; inset:-2px;
+        background: linear-gradient(120deg, transparent 42%, rgba(255,255,255,0.35) 50%, transparent 58%);
+        filter: blur(0.5px);
+        animation: sheen 4.2s cubic-bezier(.3,.6,.2,1) infinite;
+        pointer-events:none;
       }
     }
-
-    @media (max-width: 600px) {
-      .water-drop {
-        width: 90%;
-        padding: 40px 20px;
-        margin: 40px auto 0 auto;
-      }
-
-      .water-drop h1 {
-        font-size: 2.2rem;
-      }
-
-      .water-drop p {
-        font-size: 1.2rem;
-      }
-    }
-
-    body {
-  background: url('sky1.jpg') no-repeat center center;
-  background-size: cover;
-}
-
-
-    #photo-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 9999;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(4px);
-}
-
-#photo-overlay img {
-  max-height: 90vh;
-  max-width: 90vw;
-  border-radius: 16px;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
-  transition: transform 0.3s ease;
-}
-
-    .photos img.expanded {
-  transform: scale(2.2);
-  z-index: 9999 !important;
-  position: relative;
-  border-radius: 12px;
-  pointer-events: auto;
-}
-
-#about .about-text {
-  padding: 30px 20px;
-  margin: 40px auto;
-  max-width: 90%;
-  border-radius: 40px;
-}
-
-#about .about-text h1 {
-  font-size: 2rem;
-  line-height: 1.3;
-}
-
-#about .about-text p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-}
-
-.projects-container {
-  width: 100%;
-  max-width: 1000px;
-  margin: 20px auto 0 auto; /* Reduced top margin */
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-  align-items: center;
-}
-
-.project-card {
-  width: 100%;
-  max-width: 800px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 40px;
-  padding: 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow:
-    inset 0 1px 2px rgba(255, 255, 255, 0.1),
-    0 6px 16px rgba(0, 0, 0, 0.05);
-  backdrop-filter: blur(6px);
-}
-
-
-.project-card.reverse {
-  flex-direction: row-reverse;
-}
-
-.project-info {
-  flex: 1 1 300px;
-}
-
-.project-info h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: rgba(0, 0, 0, 0.85);
-}
-
-.project-info p {
-  font-size: 1.1rem;
-  margin-bottom: 1.5rem;
-  color: rgba(0, 0, 0, 0.7);
-}
-
-.project-btn {
-  text-decoration: none;
-  background: rgba(255, 255, 255, 0.12);
-  padding: 0.6rem 1.4rem;
-  border-radius: 30px;
-  color: #000;
-  font-weight: 500;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  transition: background 0.2s ease;
-}
-
-.project-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.project-logo {
-  flex: 1 1 260px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 12px;
-}
-
-.project-logo img {
-  width: 160px;
-  max-width: auto;
-  height: 160;
-  border-radius: 15px;
-  transition: transform 0.3s ease;
-  object-fit: contain;
-  background: none;
-  padding: 0;
-  backdrop-filter: none;
-  box-shadow: none;
-
-}
-
-
-
-
-/* Responsive layout */
-@media (max-width: 768px) {
-  .projects-container {
-    padding: 1.5rem;
-  }
-
-  .project-card {
-    flex-direction: column !important;
-    text-align: center;
-    gap: 1.5rem;
-  }
-
-  .project-logo {
-    order: -1;
-  }
-
-  .project-info h2 {
-    font-size: 1.5rem;
-  }
-
-  .project-info p {
-    font-size: 1rem;
-  }
-}
-
-
   </style>
 </head>
 <body>
+  <main class="wrap">
+    <!-- Hero -->
+    <section id="hey" class="hero scene">
+      <div class="slogan-wrap">
+        <svg class="slogan-svg" viewBox="0 0 1600 280" role="img" aria-label="THE TIME IS NOW">
+          <defs>
+            <filter id="outerStroke" filterUnits="userSpaceOnUse" x="-100" y="-100" width="1800" height="480">
+              <feMorphology in="SourceAlpha" operator="dilate" radius="1.4" result="dilated"/>
+              <feComposite in="dilated" in2="SourceAlpha" operator="out" result="ring"/>
+              <feFlood flood-color="#ffffff" result="white"/>
+              <feComposite in="white" in2="ring" operator="in" result="outer"/>
+              <feMerge><feMergeNode in="outer"/></feMerge>
+            </filter>
+            <linearGradient id="shimmer" gradientUnits="userSpaceOnUse" x1="-400" y1="0" x2="0" y2="0">
+              <stop offset="0%"   stop-color="#fff" stop-opacity="0"/>
+              <stop offset="30%"  stop-color="#fff" stop-opacity="0.18"/>
+              <stop offset="45%"  stop-color="#fff" stop-opacity="1"/>
+              <stop offset="55%"  stop-color="#fff" stop-opacity="1"/>
+              <stop offset="70%"  stop-color="#fff" stop-opacity="0.18"/>
+              <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+              <animate attributeName="x1" values="-400; 1800" dur="6s" repeatCount="indefinite"/>
+              <animate attributeName="x2" values="0; 2200" dur="6s" repeatCount="indefinite"/>
+            </linearGradient>
+            <filter id="glowBlur" x="-30%" y="-50%" width="160%" height="200%">
+              <feGaussianBlur stdDeviation="30"/>
+            </filter>
+          </defs>
 
-
-  <nav class="glass-nav">
-    <div class="nav-indicator"></div>
-    <a href="#" class="nav-link active" data-target="home">Hey!</a>
-    <a href="#" class="nav-link" data-target="world">World</a>
-    <a href="#" class="nav-link" data-target="about">Story</a>
-    <a href="#" class="nav-link" data-target="projects">Projects</a>
-  </nav>
-  <main>
-    <section id="home" class="active">
-      <div class="water-drop">
-        <h1>Welcome</h1>
-        <p>Breathe deep... Let your ideas float...</p>
+          <text x="800" y="140" fill="url(#shimmer)" opacity="0.85" filter="url(#glowBlur)">THE TIME IS NOW</text>
+          <text x="800" y="140" fill="#ffffff" fill-opacity="0.30">THE TIME IS NOW</text>
+          <text x="800" y="140" filter="url(#outerStroke)">THE TIME IS NOW</text>
+        </svg>
       </div>
+
+      <a href="#world" class="scroll-indicator" aria-label="Scroll to World section">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        <span></span>
+      </a>
     </section>
+
+    <!-- World -->
     <section id="world">
-      <h1>🌍 Countries I’ve Visited</h1>
-      <div class="grid">
-  <!-- GRID -->
-  <div class="grid">
+      <div class="glass content">
+        <h2>World</h2>
+        <p class="muted">A few places that changed how I think.</p>
 
-    <!-- Example Cards -->
-    <div class="card">
-      <h2>🇺🇸 United States</h2>
-      <div class="photos">
-        <img src="photos_usa/usa_1.jpg" alt="USA 1">
-        <img src="photos_usa/usa_2.jpg" alt="USA 2">
-        <img src="photos_usa/usa_3.jpg" alt="USA 3">
-      </div>
-    </div>
+        <div class="grid" style="margin-top:12px;">
+          <!-- Austria -->
+          <div class="glass card tilt" data-tilt>
+            <img class="thumb" src="photos_austria/austria_1.jpg" alt="Austria" loading="lazy">
+            <div style="margin-top:10px; display:flex; gap:8px; align-items:center;">
+              <div>🇦🇹</div><div style="font-weight:600">Austria</div>
+            </div>
+          </div>
 
-    <div class="card">
-      <h2>🇨🇦 Canada</h2>
-      <div class="photos">
-        <img src="photos_canada/canada_1.jpg" alt="Canada 1">
-        <img src="photos_canada/canada_2.jpg" alt="Canada 2">
-        <img src="photos_canada/canada_3.jpg" alt="Canada 3">
-      </div>
-    </div>
+          <!-- Canada -->
+          <div class="glass card tilt" data-tilt>
+            <img class="thumb" src="photos_canada/canada_1.jpg" alt="Canada" loading="lazy">
+            <div style="margin-top:10px; display:flex; gap:8px; align-items:center;">
+              <div>🇨🇦</div><div style="font-weight:600">Canada</div>
+            </div>
+          </div>
 
-    <div class="card">
-      <h2>🇬🇧 United Kingdom</h2>
-      <div class="photos">
-        <img src="photos_uk/UK_1.jpg" alt="UK 1">
-        <img src="photos_uk/UK_2.jpg" alt="UK 2">
-        <img src="photos_uk/UK_3.jpg" alt="UK 3">
-      </div>
-    </div>
+          <!-- Switzerland (CH) -->
+          <div class="glass card tilt" data-tilt>
+            <img class="thumb" src="photos_ch/switzerland_1.jpg" alt="Switzerland" loading="lazy">
+            <div style="margin-top:10px; display:flex; gap:8px; align-items:center;">
+              <div>🇨🇭</div><div style="font-weight:600">Switzerland</div>
+            </div>
+          </div>
 
-    <!-- Ireland -->
-    <div class="card">
-      <h2>🇮🇪 Éire / Ireland</h2>
-      <div class="photos">
-        <img src="photos_ireland/Ireland_1.jpg" alt="Ireland 1">
-        <img src="photos_ireland/Ireland_2.jpg" alt="Ireland 2">
-        <img src="photos_ireland/Ireland_3.jpg" alt="Ireland 3">
-      </div>
-    </div>
+          <!-- Liechtenstein (FL) -->
+          <div class="glass card tilt" data-tilt>
+            <img class="thumb" src="photos_fl/Liechtenstein_1.jpg" alt="Liechtenstein" loading="lazy">
+            <div style="margin-top:10px; display:flex; gap:8px; align-items:center;">
+              <div>🇱🇮</div><div style="font-weight:600">Liechtenstein</div>
+            </div>
+          </div>
 
-    <!-- Netherlands -->
-    <div class="card">
-      <h2>🇳🇱 Nederland</h2>
-      <div class="photos">
-        <img src="photos_netherlands/Netherlands_1.jpg" alt="Netherlands 1">
-        <img src="photos_netherlands/Netherlands_2.jpg" alt="Netherlands 2">
-        <img src="photos_netherlands/Netherlands_3.jpg" alt="Netherlands 3">
-      </div>
-    </div>
+          <!-- France -->
+          <div class="glass card tilt" data-tilt>
+            <img class="thumb" src="photos_france/france_1.jpg" alt="France" loading="lazy">
+            <div style="margin-top:10px; display:flex; gap:8px; align-items:center;">
+              <div>🇫🇷</div><div style="font-weight:600">France</div>
+            </div>
+          </div>
 
-    <!-- France -->
-    <div class="card">
-      <h2>🇫🇷 France</h2>
-      <div class="photos">
-        <img src="photos_france/France_1.jpg" alt="France 1">
-        <img src="photos_france/France_2.jpg" alt="France 2">
-        <img src="photos_france/France_3.jpg" alt="France 3">
-      </div>
-    </div>
+          <!-- Germany -->
+          <div class="glass card tilt" data-tilt>
+            <img class="thumb" src="photos_germany/germany_1.jpg" alt="Germany" loading="lazy">
+            <div style="margin-top:10px; display:flex; gap:8px; align-items:center;">
+              <div>🇩🇪</div><div style="font-weight:600">Germany</div>
+            </div>
+          </div>
 
-    <!-- Germany -->
-    <div class="card">
-      <h2>🇩🇪 Deutschland</h2>
-      <div class="photos">
-        <img src="photos_germany/Germany_1.jpg" alt="Germany 1">
-        <img src="photos_germany/Germany_2.jpg" alt="Germany 2">
-        <img src="photos_germany/Germany_3.jpg" alt="Germany 3">
-      </div>
-    </div>
+          <!-- Iceland -->
+          <div class="glass card tilt" data-tilt>
+            <img class="thumb" src="photos_iceland/iceland_1.jpg" alt="Iceland" loading="lazy">
+            <div style="margin-top:10px; display:flex; gap:8px; align-items:center;">
+              <div>🇮🇸</div><div style="font-weight:600">Iceland</div>
+            </div>
+          </div>
 
-    <!-- Iceland -->
-    <div class="card">
-      <h2>🇮🇸 Ísland</h2>
-      <div class="photos">
-        <img src="photos_iceland/Iceland_1.jpg" alt="Iceland 1">
-        <img src="photos_iceland/Iceland_2.jpg" alt="Iceland 2">
-        <img src="photos_iceland/Iceland_3.jpg" alt="Iceland 3">
-      </div>
-    </div>
+          <!-- Ireland -->
+          <div class="glass card tilt" data-tilt>
+            <img class="thumb" src="photos_ireland/ireland_1.jpg" alt="Ireland" loading="lazy">
+            <div style="margin-top:10px; display:flex; gap:8px; align-items:center;">
+              <div>🇮🇪</div><div style="font-weight:600">Ireland</div>
+            </div>
+          </div>
 
-    <!-- Italy -->
-    <div class="card">
-      <h2>🇮🇹 Italia</h2>
-      <div class="photos">
-        <img src="photos_italy/Italy_1.jpg" alt="Italy 1">
-        <img src="photos_italy/Italy_2.jpg" alt="Italy 2">
-        <img src="photos_italy/Italy_3.jpg" alt="Italy 3">
-      </div>
-    </div>
+          <!-- Italy -->
+          <div class="glass card tilt" data-tilt>
+            <img class="thumb" src="photos_italy/italy_1.jpg" alt="Italy" loading="lazy">
+            <div style="margin-top:10px; display:flex; gap:8px; align-items:center;">
+              <div>🇮🇹</div><div style="font-weight:600">Italy</div>
+            </div>
+          </div>
 
-    <!-- Austria -->
-    <div class="card">
-      <h2>🇦🇹 Österreich</h2>
-      <div class="photos">
-        <img src="photos_austria/Austria_1.jpg" alt="Austria 1">
-        <img src="photos_austria/Austria_2.jpg" alt="Austria 2">
-        <img src="photos_austria/Austria_3.jpg" alt="Austria 3">
-      </div>
-    </div>
+          <!-- Netherlands -->
+          <div class="glass card tilt" data-tilt>
+            <img class="thumb" src="photos_netherlands/netherlands_1.jpg" alt="Netherlands" loading="lazy">
+            <div style="margin-top:10px; display:flex; gap:8px; align-items:center;">
+              <div>🇳🇱</div><div style="font-weight:600">Netherlands</div>
+            </div>
+          </div>
 
-    <!-- Switzerland -->
-    <div class="card">
-      <h2>🇨🇭 Schweiz / Suisse / Svizzera / Svizra</h2>
-      <div class="photos">
-        <img src="photos_ch/Switzerland_1.jpg" alt="Switzerland 1">
-        <img src="photos_ch/Switzerland_2.jpg" alt="Switzerland 2">
-        <img src="photos_ch/Switzerland_3.jpg" alt="Switzerland 3">
-      </div>
-    </div>
+          <!-- United Kingdom -->
+          <div class="glass card tilt" data-tilt>
+            <img class="thumb" src="photos_uk/uk_1.jpg" alt="United Kingdom" loading="lazy">
+            <div style="margin-top:10px; display:flex; gap:8px; align-items:center;">
+              <div>🇬🇧</div><div style="font-weight:600">United Kingdom</div>
+            </div>
+          </div>
 
-    <!-- Liechtenstein -->
-    <div class="card">
-      <h2>🇱🇮 Liechtenstein</h2>
-      <div class="photos">
-        <img src="photos_fl/Liechtenstein_1.jpg" alt="Liechtenstein 1">
-        <img src="photos_fl/Liechtenstein_2.jpg" alt="Liechtenstein 2">
-        <img src="photos_fl/Liechtenstein_3.jpg" alt="Liechtenstein 3">
-      </div>
-    </div>
-
+          <!-- United States -->
+          <div class="glass card tilt" data-tilt>
+            <img class="thumb" src="photos_usa/usa_1.jpg" alt="United States" loading="lazy">
+            <div style="margin-top:10px; display:flex; gap:8px; align-items:center;">
+              <div>🇺🇸</div><div style="font-weight:600">United States</div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
-    <section id="about">
-      <div class="about-text">
-        <h1>Hi, my name is Dario.</h1>
-        <p>I'm a 20-year-old entrepreneur from Liechtenstein, proudly also working at Apple since 2024. Something cool is coming soon :3</p>
+
+    <!-- Story -->
+    <section id="story">
+      <div class="glass content">
+        <h2>Story</h2>
+
+        <div class="h-timeline">
+          <div class="h-scroll">
+            <!-- 2024 — beskou -->
+            <article class="glass card tilt milestone" data-tilt>
+              <div class="year">
+                <span class="pill">2024</span>
+                <span>Founder</span>
+              </div>
+              <h3>
+                Founded
+                <span class="brand-wrap">
+                  <span class="brand">beskou</span>
+                  <img class="mark" src="beskou.jpg" alt="beskou logo" loading="lazy">
+                </span>
+              </h3>
+              <div class="meta">Bootstrapped from zero → first users</div>
+              <div class="divider"></div>
+              <div class="stack">
+                <span class="pill">Product</span>
+                <span class="pill">Early-stage</span>
+                <span class="pill">Shipping</span>
+              </div>
+            </article>
+
+            <!-- 2024 — Sindesi -->
+            <article class="glass card tilt milestone" data-tilt>
+              <div class="year">
+                <span class="pill">2024</span>
+                <span>Founder</span>
+              </div>
+              <h3>
+                Founded
+                <span class="brand-wrap">
+                  <span class="brand">Sindesi</span>
+                  <img class="mark" src="sindesi.jpg" alt="Sindesi logo" loading="lazy">
+                </span>
+              </h3>
+              <div class="meta">AI-first note-taking that thinks with you</div>
+              <div class="divider"></div>
+              <div class="stack">
+                <span class="pill">Next.js</span>
+                <span class="pill">Edge</span>
+                <span class="pill">Vectors</span>
+              </div>
+            </article>
+
+            <!-- 2024 — Apple -->
+            <article class="glass card tilt milestone" data-tilt>
+              <div class="year">
+                <span class="pill">2024</span>
+                <span>🍎 Joined Apple</span>
+              </div>
+              <h3>Joined <span class="brand">Apple</span></h3>
+              <div class="meta">Built at scale, learned fast, obsessed over details</div>
+              <div class="divider"></div>
+              <div class="stack">
+                <span class="pill">Craft</span>
+                <span class="pill">Systems</span>
+                <span class="pill">Impact</span>
+              </div>
+            </article>
+
+            <!-- Future -->
+            <article class="glass card tilt milestone future" data-tilt aria-label="Future">
+              <div class="year">
+                <span class="pill">Future</span>
+                <span>on the horizon ↗</span>
+              </div>
+              <h3>What’s next</h3>
+              <div class="meta next">More curious products, more outdoors, more learning.</div>
+              <div class="divider"></div>
+              <div class="stack">
+                <span class="pill">Exploration</span>
+                <span class="pill">Collabs</span>
+                <span class="pill">0→1→N</span>
+              </div>
+            </article>
+          </div>
+        </div>
       </div>
     </section>
+
+    <!-- Projects -->
     <section id="projects">
-      <div class="projects-container">
-<!-- Sindesi Card -->
-<div class="project-card">
-  <div class="project-info">
-    <h2>Sindesi</h2>
-    <p>An innovative social app redefining meaningful online connections through shared context and presence.</p>
-    <a href="https://sindesi.ch" class="project-btn" target="_blank">Visit Now</a>
-  </div>
-  <div class="project-logo">
-    <img src="link-logo.png" alt="Sindesi Logo">
-  </div>
-</div>
+      <div class="glass content">
+        <h2>Projects</h2>
+        <div class="grid" style="margin-top:12px;">
+          <a class="glass card tilt" data-tilt href="https://sindesi.ch" target="_blank" rel="noreferrer" style="text-decoration:none; color:inherit;">
+            <div style="display:flex; justify-content:space-between; gap:16px; align-items:flex-start;">
+              <div>
+                <div style="font-weight:700; font-size:18px; letter-spacing:-0.01em;">Sindesi</div>
+                <div class="muted">AI-first note-taking that thinks with you</div>
+                <div class="stack">
+                  <span class="pill">Next.js</span>
+                  <span class="pill">Edge Functions</span>
+                  <span class="pill">Vectors</span>
+                </div>
+              </div>
+              <div class="pill">↗</div>
+            </div>
+          </a>
 
-<!-- Beskou Card -->
-<div class="project-card reverse">
-  <div class="project-info">
-    <h2>Beskou</h2>
-    <p>A new era of accessibility tools — simply. powerfully.</p>
-    <a href="https://beskou.com" class="project-btn" target="_blank">Visit Now</a>
-  </div>
-  <div class="project-logo">
-    <img src="beskou-logo.png" alt="Beskou Logo">
-  </div>
-</div>
+          <a class="glass card tilt" data-tilt href="https://example.com/seaglass" target="_blank" rel="noreferrer" style="text-decoration:none; color:inherit;">
+            <div style="display:flex; justify-content:space-between; gap:16px; align-items:flex-start;">
+              <div>
+                <div style="font-weight:700; font-size:18px; letter-spacing:-0.01em;">SeaGlass</div>
+                <div class="muted">Privacy-first analytics with zero cookies</div>
+                <div class="stack">
+                  <span class="pill">Cloudflare</span>
+                  <span class="pill">ClickHouse</span>
+                  <span class="pill">Go</span>
+                </div>
+              </div>
+              <div class="pill">↗</div>
+            </div>
+          </a>
 
-<!-- Steve Card -->
-<div class="project-card">
-  <div class="project-info">
-    <h2>Steve Jobs</h2>
-    <p>A tribute to my hero, my inspiration</p>
-    <a href="https://stevejobs.ch" class="project-btn" target="_blank">Visit Now</a>
-  </div>
-  <div class="project-logo">
-    <img src="sj.png" alt="Steve Logo">
-  </div>
-</div>
-
+          <a class="glass card tilt" data-tilt href="https://example.com/orbit" target="_blank" rel="noreferrer" style="text-decoration:none; color:inherit;">
+            <div style="display:flex; justify-content:space-between; gap:16px; align-items:flex-start;">
+              <div>
+                <div style="font-weight:700; font-size:18px; letter-spacing:-0.01em;">Orbit</div>
+                <div class="muted">Tiny CRM for indie founders</div>
+                <div class="stack">
+                  <span class="pill">Supabase</span>
+                  <span class="pill">React</span>
+                  <span class="pill">Postgres</span>
+                </div>
+              </div>
+              <div class="pill">↗</div>
+            </div>
+          </a>
+        </div>
       </div>
     </section>
+
+    <footer>
+      © <span id="year"></span> Your Name. Built with care.
+    </footer>
   </main>
-    <div id="photo-overlay"></div>
+
+  <!-- tiny helpers -->
   <script>
-    (function () {
-      if (window.__navScriptLoaded) return;
-      window.__navScriptLoaded = true;
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-      const navLinks = document.querySelectorAll('.nav-link');
-      const indicator = document.querySelector('.nav-indicator');
-      const sections = document.querySelectorAll('section');
-
-      function moveIndicator(el, callback) {
-        const navRect = el.parentElement.getBoundingClientRect();
-        const rect = el.getBoundingClientRect();
-
-        indicator.classList.add('shrink');
-
-        setTimeout(() => {
-          indicator.style.left = `${rect.left - navRect.left}px`;
-        }, 150);
-
-        setTimeout(() => {
-          indicator.style.width = `${rect.width}px`;
-          indicator.classList.remove('shrink');
-          if (callback) callback();
-        }, 450);
-      }
-
-      navLinks.forEach(link => {
-        link.addEventListener('click', e => {
-          e.preventDefault();
-          const target = link.getAttribute('data-target');
-          navLinks.forEach(l => l.classList.remove('active'));
-          link.classList.add('active');
-          moveIndicator(link, () => {
-            sections.forEach(sec => sec.classList.remove('active'));
-            document.getElementById(target).classList.add('active');
-          });
+    (function(){
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const range = 8; // degrees
+      document.querySelectorAll('[data-tilt]').forEach(el => {
+        let raf = null;
+        const set = (ry, rx) => { el.style.transform = `translateY(-2px) rotateX(${rx}deg) rotateY(${ry}deg)`; };
+        el.addEventListener('pointermove', (e) => {
+          const r = el.getBoundingClientRect();
+          const px = (e.clientX - r.left) / r.width;
+          const py = (e.clientY - r.top) / r.height;
+          const ry = ((px - 0.5) * range).toFixed(2);
+          const rx = ((0.5 - py) * range).toFixed(2);
+          if (raf) cancelAnimationFrame(raf);
+          raf = requestAnimationFrame(() => set(ry, rx));
+        });
+        el.addEventListener('pointerleave', () => {
+          if (raf) cancelAnimationFrame(raf);
+          el.style.transform = 'translateY(0) rotateX(0) rotateY(0)';
         });
       });
-
-      window.addEventListener('load', () => {
-        const active = document.querySelector('.nav-link.active');
-        if (active) moveIndicator(active);
-      });
     })();
-
-  const overlay = document.getElementById('photo-overlay');
-  const photos = document.querySelectorAll('.photos img');
-
-  photos.forEach(photo => {
-    photo.addEventListener('click', () => {
-      const img = document.createElement('img');
-      img.src = photo.src;
-      img.alt = photo.alt;
-
-      // Clear previous content
-      overlay.innerHTML = '';
-      overlay.appendChild(img);
-      overlay.style.display = 'flex';
-    });
-  });
-
-  // Hide overlay when clicked or on scroll
-  overlay.addEventListener('click', () => {
-    overlay.style.display = 'none';
-  });
-
-  window.addEventListener('scroll', () => {
-    overlay.style.display = 'none';
-  });
-
+    /* Removed timeline-progress JS since the line is gone */
   </script>
-
 </body>
 </html>
