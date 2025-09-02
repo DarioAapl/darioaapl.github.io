@@ -32,19 +32,34 @@
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
       color:var(--text);
       line-height:1.5;
-      background: url('sky1.jpg') center / cover fixed no-repeat;  /* galaxy everywhere by default */
+      background: url('sky1.jpg') center / cover fixed no-repeat;  /* desktop/tablet galaxy */
       min-height:100vh;
     }
     body::before{
       content:"";
-      position:fixed; inset:0; z-index:0; pointer-events:none;
+      position:fixed; inset:0; z-index:1; pointer-events:none; /* z-index raised to sit above bg layer */
       background:
         radial-gradient(1200px 800px at 20% -10%, rgba(255,255,255,.22), transparent 60%),
         radial-gradient(1000px 600px at 90% 10%, rgba(255,255,255,.16), transparent 60%),
         linear-gradient(to bottom, rgba(0,0,0,.08), rgba(0,0,0,.06), rgba(0,0,0,.12));
     }
 
-    .wrap{ width:100%; max-width:var(--maxw); margin:0 auto; padding:0 1rem; position:relative; z-index:1; }
+    /* Full-bleed fixed mobile background layer (iOS-safe) */
+    .bg-mobile{
+      position: fixed;
+      inset: 0;
+      background-image: url('sky30.jpeg');
+      background-size: cover;          /* edge-to-edge */
+      background-position: 50% 50%;
+      background-repeat: no-repeat;
+      pointer-events: none;
+      z-index: 0;                       /* below overlay + content */
+      display: none;                    /* only enabled on small screens */
+      will-change: transform;
+      transform: translateZ(0);
+    }
+
+    .wrap{ width:100%; max-width:var(--maxw); margin:0 auto; padding:0 1rem; position:relative; z-index:2; }
 
     section{ padding:64px 0; scroll-margin-top:24px; }
     .hero{ min-height:100dvh; display:grid; place-items:center; position:relative; }
@@ -133,42 +148,38 @@
       }
     }
 
-    /* ---------- MOBILE: switch to sky30.jpeg + stacked headline ---------- */
+    /* ---------- MOBILE: stacked headline + dedicated bg layer ---------- */
     .slogan-svg--stacked { display:none; }
 
-@media (max-width: 640px){
-  body{
-    /* reset the desktop shorthand so nothing lingers */
-    background: none;
+    @media (max-width: 640px){
+      /* Use the dedicated fixed background element instead of body background */
+      body{ background: none; }
 
-    /* mobile background */
-    background-image: url('sky30.jpeg');
-    background-repeat: no-repeat;
-    background-size: contain;          /* <-- fit entire photo */
-    background-position: 50% 0%;       /* center horizontally, anchor to top */
-    background-attachment: scroll;     /* iOS-friendly */
-    background-color: #0a2b3a;         /* color close to the photo for edges */
-  }
+      /* lighter overlay so the photo shows through */
+      body::before{
+        background:
+          radial-gradient(900px 540px at 20% -10%, rgba(255,255,255,.06), transparent 60%),
+          radial-gradient(800px 480px at 90% 10%, rgba(255,255,255,.05), transparent 60%),
+          linear-gradient(to bottom, rgba(0,0,0,.03), rgba(0,0,0,.04), rgba(0,0,0,.05));
+      }
 
-  /* lighter overlay so the photo shows through */
-  body::before{
-    background:
-      radial-gradient(900px 540px at 20% -10%, rgba(255,255,255,.06), transparent 60%),
-      radial-gradient(800px 480px at 90% 10%, rgba(255,255,255,.05), transparent 60%),
-      linear-gradient(to bottom, rgba(0,0,0,.03), rgba(0,0,0,.04), rgba(0,0,0,.05));
-  }
+      /* enable the fixed bg layer on mobile */
+      .bg-mobile{ display:block; }
 
-  .slogan-svg--inline { display:none; }
-  .slogan-svg--stacked { display:block; width:88vw; max-width:none; }
-  .slogan-svg--stacked text{
-    font: 800 clamp(64px, 22vmin, 150px)/1.05 "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
-    text-anchor: middle; dominant-baseline: central;
-  }
-}
-
+      .slogan-svg--inline { display:none; }
+      .slogan-svg--stacked { display:block; width:96vw; max-width:none; }
+      .slogan-svg--stacked text{
+        /* bigger, width-driven scaling */
+        font: 800 clamp(80px, 24vw, 180px)/1.05 "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+        text-anchor: middle; dominant-baseline: central;
+      }
+    }
   </style>
 </head>
 <body>
+  <!-- Full-bleed mobile background (hidden on desktop/tablet) -->
+  <div class="bg-mobile" aria-hidden="true"></div>
+
   <main class="wrap">
     <!-- Hero -->
     <section id="hey" class="hero scene">
