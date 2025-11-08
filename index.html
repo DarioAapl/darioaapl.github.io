@@ -3,458 +3,278 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dario Tino</title>
-  <meta name="description" content="THE TIME IS NOW — personal portfolio with Hey, World, Story, and Projects." />
+  <title>The Dario Tino Company — Coming Soon</title>
+  <meta name="description" content="Fuel for your next chapter. Motivation • Growth • Change — Launching soon." />
 
-  <!-- Inter font -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- ✅ Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon1.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="favicon1.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon1.png" />
+  <meta name="theme-color" content="#0b1220" />
 
   <style>
-    :root{
-      --card-bg: rgba(255,255,255,0.06);
-      --card-border: rgba(255,255,255,0.28);
-      --text: rgba(255,255,255,0.96);
-      --text-dim: rgba(255,255,255,0.80);
-      --shadow: 0 12px 30px -20px rgba(0,0,0,0.30);
-      --maxw: 1120px;
-      --radius: 32px;
-      --headline-outline: 1.4;
+    :root {
+      --text:#e6edf6;
+      --muted:#9fb0c5;
+      --chip:#1b2a3d;
+      --shadow:0 20px 60px rgba(0,0,0,.35);
     }
 
-    *{ box-sizing: border-box; }
-    html{ scroll-behavior: smooth; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
 
-    /* ---------- SITE-WIDE BACKGROUND (desktop & tablet) ---------- */
-    body{
-      margin:0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      color:var(--text);
-      line-height:1.5;
-      background: url('sky1_old2.jpg') center / cover fixed no-repeat;  /* desktop/tablet galaxy */
-      min-height:100vh;
-    }
-    body::before{
-      content:"";
-      position:fixed; inset:0; z-index:1; pointer-events:none; /* z-index raised to sit above bg layer */
-      background:
-        radial-gradient(1200px 800px at 20% -10%, rgba(255,255,255,.22), transparent 60%),
-        radial-gradient(1000px 600px at 90% 10%, rgba(255,255,255,.16), transparent 60%),
-        linear-gradient(to bottom, rgba(0,0,0,.08), rgba(0,0,0,.06), rgba(0,0,0,.12));
+    body {
+      color: var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Inter, Roboto, Helvetica, Arial;
+      background: url('sky2026.jpg') center/cover no-repeat fixed;
+      position: relative;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
-    /* Full-bleed fixed mobile background layer (iOS-safe) */
-    .bg-mobile{
+    /* Add a soft overlay to improve contrast */
+    body::before {
+      content: "";
       position: fixed;
       inset: 0;
-      background-image: url('sky30.jpeg');
-      background-size: cover;          /* edge-to-edge */
-      background-position: 50% 50%;
-      background-repeat: no-repeat;
-      pointer-events: none;
-      z-index: 0;                       /* below overlay + content */
-      display: none;                    /* only enabled on small screens */
-      will-change: transform;
-      transform: translateZ(0);
+  background: rgba(10, 20, 30, 0.35); /* lighter overlay */
+        backdrop-filter: blur(2px);
+      z-index: -1;
     }
 
-    .wrap{ width:100%; max-width:var(--maxw); margin:0 auto; padding:0 1rem; position:relative; z-index:2; }
-
-    section{ padding:64px 0; scroll-margin-top:24px; }
-    .hero{ min-height:100dvh; display:grid; place-items:center; position:relative; }
-    @supports not (height:100dvh){ .hero{ min-height:100vh; } }
-
-    .glass{
-      position:relative; border-radius:var(--radius);
-      background:var(--card-bg); border:1px solid var(--card-border);
-      box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,0.12);
-      -webkit-backdrop-filter: blur(14px) saturate(140%);
-      backdrop-filter: blur(14px) saturate(140%);
-    }
-    .glass::before{
-      content:""; position:absolute; inset:0; border-radius:var(--radius); pointer-events:none;
-      background: linear-gradient(to bottom, rgba(255,255,255,0.12), rgba(255,255,255,0.04) 35%, transparent 70%);
-    }
-    .content{ padding:24px; }
-
-    h2{ font-size:clamp(22px, 2.4vw, 32px); margin:0 0 16px; }
-    .muted{ color:var(--text-dim); font-size:14px; }
-    .pill{ display:inline-block; padding:6px 10px; font-size:12px; border-radius:999px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.18); color:var(--text); }
-    .grid{ display:grid; gap:16px; }
-    .card{ padding:24px; }
-    .stack{ display:inline-flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
-
-    footer{ padding-bottom:80px; text-align:center; color:rgba(255,255,255,0.6); font-size:12px; }
-
-    .scene{ perspective:1200px; }
-    .tilt{ transform:translateZ(0); transform-style:preserve-3d; will-change:transform; transition:transform .25s ease, box-shadow .25s ease; }
-    .tilt:hover{ box-shadow:var(--shadow), 0 10px 30px -10px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.16); }
-
-    .scroll-indicator{ position:absolute; bottom:28px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:6px; color:var(--text-dim); text-decoration:none; opacity:.9; text-shadow:0 1px 2px rgba(0,0,0,.2); }
-    .scroll-indicator svg{ width:26px; height:26px; animation:bob 2.8s ease-in-out infinite; }
-    .scroll-indicator span{ font-size:12px; letter-spacing:.08em; text-transform:lowercase; }
-    @keyframes bob{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(8px);} }
-
-    .slogan-wrap{ width:100%; display:flex; justify-content:center; align-items:center; position:relative; z-index:1; }
-    .slogan-svg{ width:min(100%, 1400px); height:auto; display:block; filter: drop-shadow(0 6px 22px rgba(0,0,0,.22)); }
-    .slogan-svg text{
-      font: 800 clamp(72px, 14vw, 180px)/0.9 "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
-      text-anchor: middle; dominant-baseline: central;
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
     }
 
-    #world .glass.content, #projects .glass.content{
-      border-radius:40px;
-      padding: clamp(28px, 4vw, 56px);
-    }
-    #world .grid, #projects .grid{
-      gap: clamp(18px, 2.4vw, 36px);
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    }
-    #world .glass.card, #projects .glass.card{
-      border-radius:24px;
-      padding: clamp(18px, 2vw, 28px);
-      border-color: rgba(255,255,255,0.16);
+    /* HEADER */
+    header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 0 32px;
     }
 
-    .thumb{ width:100%; aspect-ratio:16/10; object-fit:cover; border-radius:16px; border:1px solid rgba(255,255,255,0.18); box-shadow: inset 0 1px 0 rgba(255,255,255,0.12); background:rgba(255,255,255,0.03); display:block; }
-
-    /* ---------- STORY ---------- */
-    #story .glass.content{ border-radius:40px; padding: clamp(28px, 4vw, 56px); }
-    #story .h-timeline{ --card-min: clamp(240px, 42vw, 340px); margin-top: 8px; }
-    #story .h-scroll{
-      position: relative; display: flex; gap: clamp(14px, 2vw, 22px);
-      overflow-x: auto; padding: 24px 8px 30px; scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      -webkit-mask-image: linear-gradient(to right, transparent, #000 28px, #000 calc(100% - 28px), transparent);
-              mask-image: linear-gradient(to right, transparent, #000 28px, #000 calc(100% - 28px), transparent);
-    }
-    #story .milestone{ scroll-snap-align: start; min-width: var(--card-min); border-color: rgba(255,255,255,0.16); padding: clamp(16px, 2.2vw, 22px); }
-    #story .milestone .year{ display:inline-flex; align-items:center; gap:8px; font-weight:600; margin-bottom:6px; }
-    #story .milestone h3{ margin:0 0 6px; font-size:18px; letter-spacing:-0.01em; line-height:1.2; }
-    #story .milestone .meta{ font-size:13px; color:var(--text-dim); }
-    #story .brand{ background: linear-gradient(90deg, #fff, rgba(255,255,255,0.7)); -webkit-background-clip:text; background-clip:text; color:transparent; }
-    #story .brand-wrap{ display:inline-flex; align-items:baseline; gap:8px; }
-    #story .brand-wrap .mark{ height:1em; width:auto; vertical-align:baseline; border-radius:4px; box-shadow: 0 0 0 1px rgba(255,255,255,0.15) inset; }
-    #story .divider{ height:1px; margin:10px 0; background: linear-gradient(to right, rgba(255,255,255,0.22), rgba(255,255,255,0.08)); border-radius:999px; }
-    #story .milestone.future{ position:relative; overflow:hidden; background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03)); }
-    #story .milestone.future .next{ font-size:14px; color:var(--text-dim); }
-    @keyframes sheen { from { transform: translateX(-120%); } to { transform: translateX(120%); } }
-    @media (prefers-reduced-motion: no-preference){
-      #story .milestone.future::after{
-        content:""; position:absolute; inset:-2px;
-        background: linear-gradient(120deg, transparent 42%, rgba(255,255,255,0.35) 50%, transparent 58%);
-        filter: blur(0.5px); animation: sheen 4.2s cubic-bezier(.3,.6,.2,1) infinite; pointer-events:none;
-      }
+    .logo-img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      background: none;
+      box-shadow: none;
+      border: none;
     }
 
-    /* ---------- MOBILE: stacked headline + dedicated bg layer ---------- */
-    .slogan-svg--stacked { display:none; }
+    .brand {
+      font-weight: 700;
+      color: var(--text);
+      font-size: 1.2rem;
+    }
 
-    @media (max-width: 640px){
-      /* Use the dedicated fixed background element instead of body background */
-      body{ background: none; }
+    .chips {
+      margin-left: auto;
+    }
 
-      /* lighter overlay so the photo shows through */
-      body::before{
-        background:
-          radial-gradient(900px 540px at 20% -10%, rgba(255,255,255,.06), transparent 60%),
-          radial-gradient(800px 480px at 90% 10%, rgba(255,255,255,.05), transparent 60%),
-          linear-gradient(to bottom, rgba(0,0,0,.03), rgba(0,0,0,.04), rgba(0,0,0,.05));
-      }
+    .chip {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--chip);
+      color: #bfd3ea;
+      font-size: .85rem;
+      border: 1px solid rgba(255,255,255,.06);
+    }
 
-      /* enable the fixed bg layer on mobile */
-      .bg-mobile{ display:block; }
+    /* PANEL */
+    .panel {
+      width: 100%;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      padding: clamp(20px, 4vw, 44px);
+      backdrop-filter: blur(10px) saturate(1.3);
+    }
 
-      .slogan-svg--inline { display:none; }
-      .slogan-svg--stacked { display:block; width:96vw; max-width:none; }
-      .slogan-svg--stacked text{
-        /* bigger, width-driven scaling */
-        font: 800 clamp(80px, 24vw, 180px)/1.05 "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
-        text-anchor: middle; dominant-baseline: central;
-      }
+    .kicker {
+      color: #86efac;
+      font-weight: 800;
+      letter-spacing: .14em;
+      font-size: .85rem;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .title {
+      font-weight: 900;
+      letter-spacing: -.02em;
+      line-height: 1.04;
+      font-size: clamp(34px, 6vw, 68px);
+      margin-bottom: 14px;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: clamp(16px, 2.2vw, 18px);
+      max-width: 920px;
+      margin-bottom: 28px;
+    }
+
+    /* COUNTDOWN */
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(120px, 1fr));
+      gap: 16px;
+      width: 100%;
+      margin-top: 6px;
+    }
+
+    @media (max-width:700px) {
+      .countdown { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .tile {
+      background: rgba(12,18,30,.75);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 16px;
+      padding: 18px 14px;
+      text-align: center;
+      backdrop-filter: blur(6px);
+    }
+
+    .num {
+      display: block;
+      font-weight: 900;
+      font-size: clamp(28px, 4.2vw, 40px);
+      margin-bottom: 6px;
+    }
+
+    .unit {
+      font-size: .82rem;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      color: #a9b9cf;
+    }
+
+    /* FOOTER */
+    footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 28px;
+      color: #93a8bf;
+      font-size: .9rem;
+    }
+
+    .social {
+      display: flex;
+      gap: 10px;
+    }
+
+    .icon {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.08);
+      transition: transform .08s ease;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .icon:hover { transform: translateY(-2px); }
+
+    .icon svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
     }
   </style>
 </head>
 <body>
-  <!-- Full-bleed mobile background (hidden on desktop/tablet) -->
-  <div class="bg-mobile" aria-hidden="true"></div>
+  <div class="wrap">
+    <header>
+      <!-- Logo -->
+      <img src="raw_logo.png" alt="The Dario Tino Company logo" class="logo-img" decoding="async" fetchpriority="high">
+      <div class="brand">The Dario Tino Company</div>
 
-  <main class="wrap">
-    <!-- Hero -->
-    <section id="hey" class="hero scene">
-      <div class="slogan-wrap">
-        <!-- Desktop / tablet inline version -->
-        <svg class="slogan-svg slogan-svg--inline" viewBox="0 0 1600 280" role="img" aria-label="THE TIME IS NOW">
-          <defs>
-            <filter id="outerStroke" filterUnits="userSpaceOnUse" x="-100" y="-100" width="1800" height="480">
-              <feMorphology in="SourceAlpha" operator="dilate" radius="1.4" result="dilated"/>
-              <feComposite in="dilated" in2="SourceAlpha" operator="out" result="ring"/>
-              <feFlood flood-color="#ffffff" result="white"/>
-              <feComposite in="white" in2="ring" operator="in" result="outer"/>
-              <feMerge><feMergeNode in="outer"/></feMerge>
-            </filter>
-            <linearGradient id="shimmer" gradientUnits="userSpaceOnUse" x1="-400" y1="0" x2="0" y2="0">
-              <stop offset="0%"   stop-color="#fff" stop-opacity="0"/>
-              <stop offset="30%"  stop-color="#fff" stop-opacity="0.18"/>
-              <stop offset="45%"  stop-color="#fff" stop-opacity="1"/>
-              <stop offset="55%"  stop-color="#fff" stop-opacity="1"/>
-              <stop offset="70%"  stop-color="#fff" stop-opacity="0.18"/>
-              <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
-              <animate attributeName="x1" values="-400; 1800" dur="6s" repeatCount="indefinite"/>
-              <animate attributeName="x2" values="0; 2200" dur="6s" repeatCount="indefinite"/>
-            </linearGradient>
-            <filter id="glowBlur" x="-30%" y="-50%" width="160%" height="200%">
-              <feGaussianBlur stdDeviation="30"/>
-            </filter>
-          </defs>
-
-          <text x="800" y="140" fill="url(#shimmer)" opacity="0.85" filter="url(#glowBlur)">THE TIME IS NOW</text>
-          <text x="800" y="140" fill="#ffffff" fill-opacity="0.30">THE TIME IS NOW</text>
-          <text x="800" y="140" filter="url(#outerStroke)">THE TIME IS NOW</text>
-        </svg>
-
-        <!-- Mobile stacked version -->
-        <svg class="slogan-svg slogan-svg--stacked" viewBox="0 0 800 600" role="img" aria-label="THE TIME IS NOW">
-          <defs>
-            <filter id="outerStrokeStack" filterUnits="userSpaceOnUse" x="-100" y="-100" width="1000" height="800">
-              <feMorphology in="SourceAlpha" operator="dilate" radius="1.4" result="dilated"/>
-              <feComposite in="dilated" in2="SourceAlpha" operator="out" result="ring"/>
-              <feFlood flood-color="#ffffff" result="white"/>
-              <feComposite in="white" in2="ring" operator="in" result="outer"/>
-              <feMerge><feMergeNode in="outer"/></feMerge>
-            </filter>
-            <linearGradient id="shimmerStack" gradientUnits="userSpaceOnUse" x1="-400" y1="0" x2="0" y2="0">
-              <stop offset="0%"   stop-color="#fff" stop-opacity="0"/>
-              <stop offset="30%"  stop-color="#fff" stop-opacity="0.18"/>
-              <stop offset="45%"  stop-color="#fff" stop-opacity="1"/>
-              <stop offset="55%"  stop-color="#fff" stop-opacity="1"/>
-              <stop offset="70%"  stop-color="#fff" stop-opacity="0.18"/>
-              <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
-              <animate attributeName="x1" values="-400; 1200" dur="6s" repeatCount="indefinite"/>
-              <animate attributeName="x2" values="0; 1600" dur="6s" repeatCount="indefinite"/>
-            </linearGradient>
-            <filter id="glowBlurStack" x="-30%" y="-50%" width="160%" height="200%">
-              <feGaussianBlur stdDeviation="12"/>
-            </filter>
-          </defs>
-
-          <!-- shimmer -->
-          <text x="50%" y="50%" fill="url(#shimmerStack)" opacity="0.85" filter="url(#glowBlurStack)">
-            <tspan x="50%" dy="-1.65em">THE</tspan>
-            <tspan x="50%" dy="1.1em">TIME</tspan>
-            <tspan x="50%" dy="1.1em">IS</tspan>
-            <tspan x="50%" dy="1.1em">NOW</tspan>
-          </text>
-          <!-- fill -->
-          <text x="50%" y="50%" fill="#ffffff" fill-opacity="0.30">
-            <tspan x="50%" dy="-1.65em">THE</tspan>
-            <tspan x="50%" dy="1.1em">TIME</tspan>
-            <tspan x="50%" dy="1.1em">IS</tspan>
-            <tspan x="50%" dy="1.1em">NOW</tspan>
-          </text>
-          <!-- outline -->
-          <text x="50%" y="50%" filter="url(#outerStrokeStack)">
-            <tspan x="50%" dy="-1.65em">THE</tspan>
-            <tspan x="50%" dy="1.1em">TIME</tspan>
-            <tspan x="50%" dy="1.1em">IS</tspan>
-            <tspan x="50%" dy="1.1em">NOW</tspan>
-          </text>
-        </svg>
+      <div class="chips">
+        <span class="chip">Motivation • Growth • Change</span>
       </div>
+    </header>
 
-      <a href="#world" class="scroll-indicator" aria-label="Scroll to World section">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-        <span></span>
-      </a>
-    </section>
+    <section class="panel" aria-label="Coming Soon">
+      <p class="kicker">Coming soon</p>
+      <h1 class="title">Fuel for your next chapter.</h1>
+      <p class="lead">
+        We're building a motivation brand that blends practical books, sharp apparel, and daily tools
+        to help you move from <em>intent</em> to <em>action</em>. Be first to know when we launch and get an
+        exclusive day-one offer.
+      </p>
 
-    <!-- World -->
-    <section id="world">
-      <div class="glass content">
-        <h2>World</h2>
-        <p class="muted">A few places that changed how I think.</p>
-
-        <div class="grid" style="margin-top:12px;">
-          <!-- Austria -->
-          <div class="glass card tilt" data-tilt>
-            <img class="thumb" src="photos_austria/Austria_3.jpg" alt="Austria" loading="lazy">
-            <div style="margin-top:10px; display:flex; gap:8px; align-items:center;">
-              <div>🇦🇹</div><div style="font-weight:600">Austria</div>
-            </div>
-          </div>
-
-          <!-- Canada -->
-          <div class="glass card tilt" data-tilt>
-            <img class="thumb" src="photos_canada/canada_3.jpg" alt="Canada" loading="lazy">
-            <div style="margin-top:10px; display:flex; gap:8px; align-items:center;">
-              <div>🇨🇦</div><div style="font-weight:600">Canada</div>
-            </div>
-          </div>
-
-          <!-- Switzerland (CH) -->
-          <div class="glass card tilt" data-tilt>
-            <img class="thumb" src="photos_ch/Switzerland_2.jpg" alt="Switzerland" loading="lazy">
-            <div style="margin-top:10px; display:flex; gap:8px; align-items:center;">
-              <div>🇨🇭</div><div style="font-weight:600">Switzerland</div>
-            </div>
-          </div>
-
-          <!-- Liechtenstein (FL) -->
-          <div class="glass card tilt" data-tilt>
-            <img class="thumb" src="photos_fl/Liechtenstein_2.jpg" alt="Liechtenstein" loading="lazy">
-            <div style="margin-top:10px; display:flex; gap:8px; align-items:center;">
-              <div>🇱🇮</div><div style="font-weight:600">Liechtenstein</div>
-            </div>
-          </div>
-
-          <!-- France -->
-          <div class="glass card tilt" data-tilt>
-            <img class="thumb" src="photos_france/France_1.jpg" alt="France" loading="lazy">
-            <div style="margin-top:10px; display:flex; gap:8px; align-items:center;">
-              <div>🇫🇷</div><div style="font-weight:600">France</div>
-            </div>
-          </div>
-
-          <!-- Germany -->
-          <div class="glass card tilt" data-tilt>
-            <img class="thumb" src="photos_germany/Germany_1.jpg" alt="Germany" loading="lazy">
-            <div style="margin-top:10px; display:flex; gap:8px; align-items:center;">
-              <div>🇩🇪</div><div style="font-weight:600">Germany</div>
-            </div>
-          </div>
-
-          <!-- Iceland -->
-          <div class="glass card tilt" data-tilt>
-            <img class="thumb" src="photos_iceland/Iceland_1.jpg" alt="Iceland" loading="lazy">
-            <div style="margin-top:10px; display:flex; gap:8px; align-items:center;">
-              <div>🇮🇸</div><div style="font-weight:600">Iceland</div>
-            </div>
-          </div>
-
-          <!-- Ireland -->
-          <div class="glass card tilt" data-tilt>
-            <img class="thumb" src="photos_ireland/Ireland_1.jpg" alt="Ireland" loading="lazy">
-            <div style="margin-top:10px; display:flex; gap:8px; align-items:center;">
-              <div>🇮🇪</div><div style="font-weight:600">Ireland</div>
-            </div>
-          </div>
-
-          <!-- Italy -->
-          <div class="glass card tilt" data-tilt>
-            <img class="thumb" src="photos_italy/Italy_1.jpg" alt="Italy" loading="lazy">
-            <div style="margin-top:10px; display:flex; gap:8px; align-items:center;">
-              <div>🇮🇹</div><div style="font-weight:600">Italy</div>
-            </div>
-          </div>
-
-          <!-- Netherlands -->
-          <div class="glass card tilt" data-tilt>
-            <img class="thumb" src="photos_netherlands/Netherlands_1.jpg" alt="Netherlands" loading="lazy">
-            <div style="margin-top:10px; display:flex; gap:8px; align-items:center;">
-              <div>🇳🇱</div><div style="font-weight:600">Netherlands</div>
-            </div>
-          </div>
-
-          <!-- United Kingdom -->
-          <div class="glass card tilt" data-tilt>
-            <img class="thumb" src="photos_uk/UK_4.jpg" alt="United Kingdom" loading="lazy">
-            <div style="margin-top:10px; display:flex; gap:8px; align-items:center;">
-              <div>🇬🇧</div><div style="font-weight:600">United Kingdom</div>
-            </div>
-          </div>
-
-          <!-- United States -->
-          <div class="glass card tilt" data-tilt>
-            <img class="thumb" src="photos_usa/usa_2.jpg" alt="United States" loading="lazy">
-            <div style="margin-top:10px; display:flex; gap:8px; align-items:center;">
-              <div>🇺🇸</div><div style="font-weight:600">United States</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="projects">
-      <div class="glass content">
-        <h2>Projects</h2>
-        <div class="grid" style="margin-top:12px;">
-          <a class="glass card tilt" data-tilt href="https://sindesi.ch" target="_blank" rel="noreferrer" style="text-decoration:none; color:inherit;">
-            <div style="display:flex; justify-content:space-between; gap:16px; align-items:flex-start;">
-              <div>
-                <div style="font-weight:700; font-size:18px; letter-spacing:-0.01em;">Sindesi</div>
-                <div class="muted">Connecting people through skills</div>
-                <div class="stack">
-                  <span class="pill">Services Platform</span>
-                  <span class="pill">Operating in Switzerland</span>
-                  <span class="pill">launching in 2025</span>
-                </div>
-              </div>
-              <div class="pill">↗</div>
-            </div>
-          </a>
-
-          <a class="glass card tilt" data-tilt href="https://beskou.com" target="_blank" rel="noreferrer" style="text-decoration:none; color:inherit;">
-            <div style="display:flex; justify-content:space-between; gap:16px; align-items:flex-start;">
-              <div>
-                <div style="font-weight:700; font-size:18px; letter-spacing:-0.01em;">beskou</div>
-                <div class="muted">because accessability matters.</div>
-                <div class="stack">
-                  <span class="pill">shoe</span>
-                  <span class="pill">accessability</span>
-                  <span class="pill">coming in 2027</span>
-                </div>
-              </div>
-              <div class="pill">↗</div>
-            </div>
-          </a>
-
-          <a class="glass card tilt" data-tilt href="https://stevejobs.ch" target="_blank" rel="noreferrer" style="text-decoration:none; color:inherit;">
-            <div style="display:flex; justify-content:space-between; gap:16px; align-items:flex-start;">
-              <div>
-                <div style="font-weight:700; font-size:18px; letter-spacing:-0.01em;">Steve Jobs</div>
-                <div class="muted">a tribute to my hero</div>
-                <div class="stack">
-                  <span class="pill">for Steve</span>
-                </div>
-              </div>
-              <div class="pill">↗</div>
-            </div>
-          </a>
-        </div>
+      <div class="countdown" role="group" aria-label="Launch countdown">
+        <div class="tile"><strong class="num" id="days">100</strong><span class="unit">Days</span></div>
+        <div class="tile"><strong class="num" id="hours">00</strong><span class="unit">Hours</span></div>
+        <div class="tile"><strong class="num" id="minutes">00</strong><span class="unit">Minutes</span></div>
+        <div class="tile"><strong class="num" id="seconds">00</strong><span class="unit">Seconds</span></div>
       </div>
     </section>
 
     <footer>
-      © <span id="year"></span> Dario Tino. Built with Love.
+      <small>© <span id="year"></span> Dario Tino Company. All rights reserved.</small>
+      <div class="social">
+        <a href="https://www.instagram.com/darioaapl/" target="_blank" rel="noopener" class="icon" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="5" ry="5" stroke="currentColor" stroke-width="1.6" fill="none"/>
+            <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.6" fill="none"/>
+            <circle cx="17.5" cy="6.5" r="1.3" fill="currentColor"/>
+          </svg>
+        </a>
+      </div>
     </footer>
-  </main>
+  </div>
 
-  <!-- tiny helpers -->
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-    (function(){
-      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      const range = 8; // degrees
-      document.querySelectorAll('[data-tilt]').forEach(el => {
-        let raf = null;
-        const set = (ry, rx) => { el.style.transform = `translateY(-2px) rotateX(${rx}deg) rotateY(${ry}deg)`; };
-        el.addEventListener('pointermove', (e) => {
-          const r = el.getBoundingClientRect();
-          const px = (e.clientX - r.left) / r.width;
-          const py = (e.clientY - r.top) / r.height;
-          const ry = ((px - 0.5) * range).toFixed(2);
-          const rx = ((0.5 - py) * range).toFixed(2);
-          if (raf) cancelAnimationFrame(raf);
-          raf = requestAnimationFrame(() => set(ry, rx));
-        });
-        el.addEventListener('pointerleave', () => {
-          if (raf) cancelAnimationFrame(raf);
-          el.style.transform = 'translateY(0) rotateX(0) rotateY(0)';
-        });
-      });
-    })();
-  </script>
+  // 🎯 Countdown target — March 1, 2026 (midnight local time)
+  const target = new Date('2026-02-01T00:00:00');
+
+  const $ = id => document.getElementById(id);
+  const daysEl = $('days'), hoursEl = $('hours'), minutesEl = $('minutes'), secondsEl = $('seconds');
+  const pad = n => String(n).padStart(2, '0');
+
+  function tick() {
+    const now = new Date();
+    const diff = target - now;
+
+    if (diff <= 0) {
+      daysEl.textContent = '00';
+      hoursEl.textContent = '00';
+      minutesEl.textContent = '00';
+      secondsEl.textContent = '00';
+      clearInterval(t);
+      return;
+    }
+
+    const s = Math.floor(diff / 1000);
+    const d = Math.floor(s / 86400);
+    const h = Math.floor((s % 86400) / 3600);
+    const m = Math.floor((s % 3600) / 60);
+    const sec = s % 60;
+
+    daysEl.textContent = d;
+    hoursEl.textContent = pad(h);
+    minutesEl.textContent = pad(m);
+    secondsEl.textContent = pad(sec);
+  }
+
+  tick();
+  const t = setInterval(tick, 1000);
+</script>
+
 </body>
 </html>
