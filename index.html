@@ -78,15 +78,24 @@
     .logo-img { width:48px; height:48px; object-fit:contain; }
     .brand { font-weight:700; color:var(--text); font-size:1.2rem; }
     .chips { margin-left:auto; }
-    .chip {
-      display:inline-block;
-      padding:8px 12px;
-      border-radius:999px;
-      background:var(--chip);
-      color:#bfd3ea;
-      font-size:.85rem;
-      border:1px solid rgba(255,255,255,.06);
-    }
+.chip {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--chip);
+  color: #bfd3ea;
+  font-size: .85rem;
+  border: 1px solid rgba(255,255,255,.06);
+  white-space: nowrap; /* ✅ Prevents line break */
+}
+
+/* Optional: slightly smaller on mobile */
+@media (max-width: 480px) {
+  .chip {
+    font-size: 0.75rem;
+    padding: 6px 10px;
+  }
+}
 
     /* PANEL — lighter & glassy */
     .panel {
@@ -203,7 +212,7 @@
   <div class="wrap">
     <header>
       <img src="raw_logo.png" alt="The Dario Tino Company logo" class="logo-img">
-      <div class="brand">The Dario Tino Company</div>
+      <div class="brand">dariotino.com</div>
       <div class="chips"><span class="chip">Motivation • Growth • Change</span></div>
     </header>
 
@@ -223,7 +232,7 @@
     </section>
 
     <footer>
-      <small>© <span id="year"></span> Dario Tino Company. All rights reserved.</small>
+      <small>© <span id="year"></span> dariotino.com. All rights reserved.</small>
       <div class="social">
         <a href="https://www.instagram.com/darioaapl/" target="_blank" rel="noopener" class="icon" aria-label="Instagram">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
