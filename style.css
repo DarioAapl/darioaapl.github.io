@@ -5,6 +5,19 @@
   box-sizing: border-box;
 }
 
+/* ===== Desktop Custom Cursor ===== */
+@media (pointer: fine) {
+  html, body {
+    cursor: url("plane.png") 16 16, auto;
+  }
+
+  a,
+  button,
+  .glass-link {
+    cursor: url("plane.png") 16 16, pointer;
+  }
+}
+
 /* ===== Page Background ===== */
 html, body {
   height: 100%;
@@ -87,7 +100,7 @@ header {
     0 30px 60px rgba(0,0,0,0.28);
 }
 
-/* ===== Subtext (float free / evoke lightness) ===== */
+/* ===== Subtext ===== */
 .subtext {
   font-size: clamp(32px, 3vw, 36px);
   font-weight: 700;
@@ -119,7 +132,7 @@ header {
 
 /* ===== Sections ===== */
 .section {
-  padding: 30vh 0;   /* ← THIS is the key */
+  padding: 30vh 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -131,15 +144,13 @@ header {
 /* ===== Floating Gap ===== */
 .floating-gap {
   position: relative;
-  min-height: 18vh; /* keeps balloon room */
+  min-height: 18vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding-top: 0;
   z-index: 1;
 }
-
 
 /* ===== Balloon ===== */
 .balloon {
