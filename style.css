@@ -234,37 +234,70 @@ header {
 @media (max-width: 900px) {
 
   header {
-    left: 20px;
-    top: 20px;
+    left: 16px;
+    top: 16px;
   }
 
   .hero-split {
     grid-template-columns: 1fr;
-    padding-top: 120px;
-    text-align: center;
+    padding: 96px 6vw 60px;
+    gap: 40px;
+    min-height: auto;
+  }
+
+  .hero-left {
+    order: 1;
   }
 
   .hero-right {
+    order: 2;
     align-items: center;
+    text-align: center;
   }
 
   .book-cover {
-    width: min(300px, 80%);
+    width: min(260px, 70vw);
+    max-height: 55vh;
+  }
+
+  .glass-text {
+    font-size: clamp(42px, 12vw, 72px);
+  }
+
+  .subtext {
+    font-size: 18px;
+    margin-bottom: 28px;
+    letter-spacing: 0.12em;
+  }
+
+  .cta-button {
+    padding: 14px 28px;
+    font-size: 0.8rem;
+  }
+
+  .scroll-cue {
+    height: 24vh;
+  }
+
+  .scroll-balloon {
+    width: min(180px, 50vw);
+    margin-top: -20px;
   }
 
   .follow {
-    padding: 18vh 6vw;
+    padding: 16vh 6vw;
+    gap: 40px;
+  }
+
+  .follow-title {
+    font-size: clamp(48px, 14vw, 80px);
+  }
+
+  .social-btn {
+    padding: 14px 24px;
+    font-size: 0.75rem;
   }
 }
-
-.book-link {
-  display: inline-block;
-}
-
-.book-link:hover .book-cover {
-  transform: translateY(-26px) scale(1.02);
-}
-
 /* ===============================
    SCROLL CUE BALLOON
 ================================ */
