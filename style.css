@@ -1,24 +1,28 @@
-/* ===== Reset ===== */
+/* ===============================
+   RESET
+================================ */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* ===== Desktop Custom Cursor ===== */
+/* ===============================
+   CUSTOM CURSOR (DESKTOP ONLY)
+================================ */
 @media (pointer: fine) {
   html, body {
     cursor: url("plane.png") 16 16, auto;
   }
 
-  a,
-  button,
-  .glass-link {
+  a, button {
     cursor: url("plane.png") 16 16, pointer;
   }
 }
 
-/* ===== Page Background ===== */
+/* ===============================
+   BASE PAGE
+================================ */
 html, body {
   height: 100%;
   font-family: system-ui, -apple-system, "Segoe UI", Inter, Roboto, Arial;
@@ -32,20 +36,24 @@ html, body {
   background-attachment: fixed;
 }
 
-/* ===== Light Atmospheric Tint ===== */
+/* ===============================
+   ATMOSPHERIC TINT
+================================ */
 .tint {
   position: fixed;
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(255,255,255,0.04),
-    rgba(0,0,0,0.18)
+    rgba(255,255,255,0.05),
+    rgba(0,0,0,0.25)
   );
   z-index: 0;
   pointer-events: none;
 }
 
-/* ===== Header ===== */
+/* ===============================
+   HEADER
+================================ */
 header {
   position: fixed;
   top: 24px;
@@ -64,108 +72,224 @@ header {
   width: 44px;
 }
 
-/* ===== Hero ===== */
-.hero {
-  position: relative;
-  height: 100vh;
+/* ===============================
+   HERO SPLIT
+================================ */
+.hero-split {
+  min-height: 100vh;
   display: grid;
-  place-items: center;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 0 8vw;
+  gap: 6vw;
   z-index: 1;
 }
 
-.hero-text {
+/* LEFT */
+.hero-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* RIGHT */
+.hero-right {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  z-index: 1;
+  align-items: flex-start;
 }
 
-/* ===== Icy 3D Flying Text ===== */
+/* ===============================
+   BOOK COVER
+================================ */
+.book-cover {
+  width: min(420px, 80%);
+  max-height: 80vh;
+  object-fit: contain;
+
+  filter:
+    drop-shadow(0 24px 48px rgba(0,0,0,0.35))
+    drop-shadow(0 90px 160px rgba(0,0,0,0.3));
+
+  animation: floatSlow 9s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-22px); }
+}
+
+/* ===============================
+   GLASS TEXT
+================================ */
 .glass-text {
   font-size: clamp(64px, 10vw, 140px);
   font-weight: 900;
   letter-spacing: -0.04em;
   line-height: 1;
-  position: relative;
 
-  color: rgba(0, 94, 255, 0.017);
+  color: rgba(0, 94, 255, 0.02);
 
   text-shadow:
     0 1px 0 rgba(255,255,255,0.35),
-    0 2px 0 rgba(255,255,255,0.30),
+    0 2px 0 rgba(255,255,255,0.3),
     0 3px 0 rgba(255,255,255,0.25),
-    0 6px 10px rgba(0,0,0,0.18),
-    0 14px 24px rgba(0,0,0,0.22),
-    0 30px 60px rgba(0,0,0,0.28);
+    0 8px 16px rgba(0,0,0,0.22),
+    0 24px 60px rgba(0,0,0,0.3);
 }
 
-/* ===== Subtext ===== */
+/* ===============================
+   SUBTEXT
+================================ */
 .subtext {
-  font-size: clamp(32px, 3vw, 36px);
+  font-size: clamp(28px, 3vw, 36px);
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: rgba(255,255,255,0.22);
+  margin-top: 12px;
+  margin-bottom: 40px;
+
+  color: rgba(255,255,255,0.28);
 
   text-shadow:
-    0 0 4px rgba(255,255,255,0.25),
-    0 8px 20px rgba(0,0,0,0.25);
+    0 0 6px rgba(255,255,255,0.25),
+    0 12px 30px rgba(0,0,0,0.35);
 }
 
-/* ===== Gap Text ===== */
-.gap-text {
-  margin-bottom: 16px;
-  text-align: center;
-}
-
-/* ===== Jumper ===== */
-.jumper {
-  position: absolute;
-  bottom: -25%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(360px, 60vw);
-  pointer-events: none;
-  will-change: transform;
-  z-index: 2;
-}
-
-/* ===== Sections ===== */
-.section {
-  padding: 30vh 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 24px;
-  z-index: 1;
-}
-
-/* ===== Floating Gap ===== */
-.floating-gap {
-  position: relative;
-  min-height: 18vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  z-index: 1;
-}
-
-/* ===== Balloon ===== */
-.balloon {
-  width: min(360px, 50vw);
-  pointer-events: none;
-  will-change: transform;
-}
-
-/* ===== Glass Link ===== */
-.glass-link {
-  font-size: 1.2rem;
-  letter-spacing: 0.2em;
+/* ===============================
+   CTA BUTTON
+================================ */
+.cta-button {
+  font-size: 0.9rem;
+  letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.65);
+
+  padding: 18px 36px;
+  border-radius: 999px;
+
+  color: rgba(255,255,255,0.85);
   text-decoration: none;
-  padding-bottom: 4px;
-  border-bottom: 1px solid rgba(255,255,255,0.35);
+
+  border: 1px solid rgba(255,255,255,0.35);
+  background: rgba(255,255,255,0.07);
+  backdrop-filter: blur(8px);
+
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  background: rgba(255,255,255,0.16);
+  transform: translateY(-3px);
+}
+
+/* ===============================
+   FOLLOW SECTION
+================================ */
+.follow {
+  min-height: 100vh;
+  padding: 22vh 8vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 64px;
+  z-index: 1;
+}
+
+/* ===============================
+   SOCIAL BUTTONS
+================================ */
+.social-row {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.social-btn {
+  font-size: 0.85rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+
+  padding: 16px 30px;
+  border-radius: 999px;
+
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(8px);
+
+  transition: all 0.25s ease;
+}
+
+.social-btn:hover {
+  background: rgba(255,255,255,0.16);
+  transform: translateY(-3px);
+}
+
+/* ===============================
+   MOBILE
+================================ */
+@media (max-width: 900px) {
+
+  header {
+    left: 20px;
+    top: 20px;
+  }
+
+  .hero-split {
+    grid-template-columns: 1fr;
+    padding-top: 120px;
+    text-align: center;
+  }
+
+  .hero-right {
+    align-items: center;
+  }
+
+  .book-cover {
+    width: min(300px, 80%);
+  }
+
+  .follow {
+    padding: 18vh 6vw;
+  }
+}
+
+.book-link {
+  display: inline-block;
+}
+
+.book-link:hover .book-cover {
+  transform: translateY(-26px) scale(1.02);
+}
+
+/* ===============================
+   SCROLL CUE BALLOON
+================================ */
+.scroll-cue {
+  height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 1;
+}
+
+.scroll-balloon {
+  width: min(260px, 45vw);
+  margin-top: -20px;
+  pointer-events: none;
+
+  animation: floatBalloon 7s ease-in-out infinite;
+  will-change: transform;
+
+  filter:
+    drop-shadow(0 20px 40px rgba(0,0,0,0.35))
+    drop-shadow(0 60px 120px rgba(0,0,0,0.25));
+}
+
+@keyframes floatBalloon {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-28px); }
 }
