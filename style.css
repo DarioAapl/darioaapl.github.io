@@ -463,3 +463,168 @@ body {
 .site-footer {
   margin-top: auto;
 }
+
+/* ===============================
+   GLOBAL MOBILE STABILITY FIXES
+================================ */
+
+/* Disable fixed background on mobile */
+html, body {
+  background-attachment: scroll;
+}
+
+@media (min-width: 901px) {
+  html, body {
+    background-attachment: fixed;
+  }
+}
+
+/* ===============================
+   COUNTRY DROPDOWN
+================================ */
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Hover buffer (desktop) */
+.dropdown::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 32px;
+}
+
+/* MORE button */
+.more-btn {
+  font-size: 0.85rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+
+  padding: 16px 30px;
+  border-radius: 999px;
+
+  color: rgba(255,255,255,0.75);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.3);
+  backdrop-filter: blur(8px);
+
+  transition: all 0.25s ease;
+}
+
+.more-btn:hover {
+  background: rgba(255,255,255,0.16);
+  transform: translateY(-3px);
+}
+
+/* ===============================
+   DROPDOWN MENU (DESKTOP)
+================================ */
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 0;
+
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  gap: 12px;
+
+  padding: 16px;
+  border-radius: 24px;
+
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.25);
+
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.35),
+    0 60px 120px rgba(0,0,0,0.25);
+
+  z-index: 20;
+
+  /* animation setup */
+  opacity: 0;
+  transform: translateY(10px) scale(0.98);
+  pointer-events: none;
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+/* Show on hover (desktop) */
+@media (min-width: 901px) {
+  .dropdown:hover .dropdown-menu {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+}
+
+/* Country buttons */
+.dropdown-menu button {
+  font-size: 0.7rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+
+  padding: 14px 18px;
+  border-radius: 999px;
+
+  color: rgba(255,255,255,0.75);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.3);
+  backdrop-filter: blur(8px);
+
+  white-space: nowrap;
+  text-align: center;
+
+  transition: all 0.25s ease;
+}
+
+.dropdown-menu button:hover {
+  background: rgba(255,255,255,0.16);
+  transform: translateY(-2px);
+}
+
+/* ===============================
+   MOBILE DROPDOWN BEHAVIOR
+================================ */
+
+@media (max-width: 900px) {
+
+  .dropdown::after {
+    display: none;
+  }
+
+  .dropdown-menu {
+    position: static;
+    margin-top: 16px;
+    width: 100%;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+    pointer-events: none;
+  }
+
+  .dropdown.open .dropdown-menu {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+
+  .more-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .dropdown-menu button {
+    font-size: 0.65rem;
+    padding: 12px 14px;
+  }
+}
