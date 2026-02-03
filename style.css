@@ -103,8 +103,8 @@ header {
    BOOK COVER
 ================================ */
 .book-cover {
-  width: min(420px, 80%);
-  max-height: 80vh;
+  width: min(1220px, 80%);
+  max-height: 100vh;
   object-fit: contain;
 
   filter:
@@ -323,4 +323,143 @@ header {
 @keyframes floatBalloon {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-28px); }
+}
+
+/* ===============================
+   COUNTRY DROPDOWN (MATCHES CTA / SOCIAL)
+================================ */
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* MORE button — same vibe as social-btn */
+.more-btn {
+  font-size: 0.85rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+
+  padding: 16px 30px;
+  border-radius: 999px;
+
+  color: rgba(255,255,255,0.75);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.3);
+  backdrop-filter: blur(8px);
+
+  transition: all 0.25s ease;
+}
+
+.more-btn:hover {
+  background: rgba(255,255,255,0.16);
+  transform: translateY(-3px);
+}
+
+/* ===============================
+   COUNTRY DROPDOWN — 2 x 5 GRID
+================================ */
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 0;
+
+  display: none;
+  grid-template-columns: repeat(5, auto);
+  gap: 12px;
+
+  padding: 16px;
+  border-radius: 24px;
+
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.25);
+
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.35),
+    0 60px 120px rgba(0,0,0,0.25);
+
+  z-index: 20;
+}
+
+/* Country buttons */
+.dropdown-menu button {
+  font-size: 0.7rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+
+  padding: 14px 18px;
+  border-radius: 999px;
+
+  color: rgba(255,255,255,0.75);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.3);
+  backdrop-filter: blur(8px);
+
+  white-space: nowrap;
+  text-align: center;
+
+  transition: all 0.25s ease;
+}
+
+.dropdown-menu button:hover {
+  background: rgba(255,255,255,0.16);
+  transform: translateY(-2px);
+}
+
+/* Show dropdown */
+.dropdown:hover .dropdown-menu {
+  display: grid;
+}
+
+@media (max-width: 600px) {
+  .dropdown-menu {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 32px;
+}
+
+/* ===============================
+   FOOTER
+================================ */
+
+.site-footer {
+  position: relative;
+  z-index: 1;
+
+  padding: 40px 0 28px;
+  text-align: center;
+
+  font-size: 0.65rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+
+  color: rgba(255,255,255,0.35);
+
+  text-shadow:
+    0 0 6px rgba(255,255,255,0.15),
+    0 12px 30px rgba(0,0,0,0.45);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.site-footer {
+  margin-top: auto;
 }
